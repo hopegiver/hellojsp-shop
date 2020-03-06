@@ -1,0 +1,52 @@
+
+<div class="row">
+   <div class="col-md-8 grid-margin stretch-card">
+     <div class="card">
+       <div class="card-body">
+     	  <h3 class="panel-title">${pagetitle} detail</h3>
+	         <p class="card-description">
+	           
+	         </p><br>	
+         	
+			<table id="" class="table">
+              
+              <tbody>
+              	
+                <tr >
+                    <td width="20%">Parent menu</td>
+                    <td>${info.parent_id}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Category name</td>
+                    <td>${info.category_name}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>${info.description}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>${info.reg_date}</td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            
+            <input type="button" value="Back" class="btn btn-default" onclick="history.go(-1)">
+						<a href="update.jsp?id=${info.id}" class="btn btn-primary">Edit</a>
+						<a href="delete.jsp?id=${info.id}" class="btn btn-danger">Delete</a>			
+       </div>
+     </div>
+   </div>
+  
+ </div>
+       

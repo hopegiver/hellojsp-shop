@@ -1,0 +1,66 @@
+ 
+<div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Users</h4>
+              
+              <div class="row" style="margin-bottom: 30px;">
+                <div class="col-6">
+                	<form name="form1" method="get" class="form-inline">
+					<input type="text" name="s_keyword" class="form-control">
+					<input class="btn btn-default" type="submit" value="Search">
+					</form>
+					${form_script}
+                </div>
+                
+                <div class="col-6" style="text-align: right;">
+                	<a href="create.jsp" class="btn btn-small btn-primary">New</a>
+                </div>
+              </div>
+              
+				
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id=" " class="table table-bordered">
+                      <thead>
+                        <tr>
+                            <th>Order #</th>
+                            <th>Login Id</th>
+                            <th>Nick Name</th>
+                            <th>passwd</th>
+                            <th>Email</th>
+                            
+                            <th width="15%">Manage</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <!--#foreach($item in $list)-->
+                        <tr>
+                            <td>${item.id}</td>
+                            <td>${item.login_id}</td>
+                            <td>${item.nickname}</td>
+                            <td>${item.passwd}</td>
+                            <td>${item.email}</td>
+                           
+                            <td>
+                            	
+                              <a href="read.jsp?id=${item.id}" class="btn btn-outline-success">View</a>
+                              <a href="update.jsp?id=${item.id}" class="btn btn-outline-primary">Edit</a>
+                              <a href="delete.jsp?id=${item.id}" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                        <!--#end-->
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            	${pagebar}
+            </div>
+          </div>
+        
+        
+        
