@@ -15,13 +15,9 @@ f.addElement("photo_url", null, "title:'photo_url'");
 //Step3
 if(m.isPost() && f.validate()) {
 
-	DataSet pro = product.find("" , "id", "id DESC", 2);
-	DataSet pro = lm.getDataSet();
-    while(pro.next()) {
-    	pro.put("id", pro.s("id"));
-    }
-	m.p(pro); if(true) return;
+	int pro = product.getOneInt("select id from tb_product order by desc");
 	
+	//m.p(pro.id); if(true) return;
 	//product.item("category_id", f.get("category_id"));
 	product.item("product_name", f.get("product_name"));
 	product.item("price", f.get("price"));
@@ -36,17 +32,15 @@ if(m.isPost() && f.validate()) {
 	product.item("reg_date", m.time("yyyyMMddHHmmss"));
 	product.item("status", 1);
 	
-	
-	if(!product.insert()) {
+	int newId = product.insertWithId();
+	if(newId == 0) {
 		
 		m.jsError(" occurred(insert)");
 		return;
 	}
 	
-	
-	
 	categoryModule.item("category_id", f.get("category_id"));
-	//categoryModule.item("module_id", newId);
+	categoryModule.item("module_id", newId);
 	
 	if(!categoryModule.insert()) {
 		
@@ -55,7 +49,7 @@ if(m.isPost() && f.validate()) {
 	}
 	
 	categoryModule.item("category_id", f.get("sub_category_id"));
-	categoryModule.item("module_id", "123");
+	categoryModule.item("module_id", newId);
 	
 	if(!categoryModule.insert()) {
 		
