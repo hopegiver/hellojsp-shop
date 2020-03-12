@@ -1,14 +1,15 @@
 <%@ page contentType="text/html; charset=utf-8" %><%@ include file="/init.jsp" %><%
 
 //Step1
-CategoryDao category = new CategoryDao();
+ProductDao product = new ProductDao();
+CategoryModuleDao categoryModule = new CategoryModuleDao();
 
 //Step2
 int id = m.reqInt("id");
 if(id == 0) { m.jsError("Primary Key is required"); return; }
 
 //Step3
-DataSet info = category.find("id = " + id);
+DataSet info = product.find("id = " + id);
 if(!info.next()) { m.jsError("No Data"); return; }
 
 f.addElement("id", info.s("id"), "title:'ID', required:true");
@@ -19,26 +20,30 @@ if(m.isPost() && f.validate()) {
 	if(!"".equals(info.s("att_file_code"))) {
 		m.delFile(f.uploadDir + "/" + info.s("att_file_code"));
 	}
-	category.item("status", -1);
+	product.item("status", -1);
 
 	//blog.setDebug(out);
-	if(!category.update("id = " + id)) {
+	if(!product.update("id = " + id)) {
 		m.jsAlert("Error occurred(delete)");
 		return;
 	}
+	
+	categoryModule.delete("module_id = " + id);
+	
+	
 
 	m.redirect("index.jsp");
 	return;
 }
 
 //Step6
-String pagetitle = "Category"; 
+String pagetitle = "Product"; 
 String pageaction = "delete"; 
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
 
 p.setLayout("adminMain");
-p.setBody("admin/category/delete");
+p.setBody("admin/product/delete");
 p.setVar("info", info);
 p.setVar("form_script", f.getScript());
 p.print();
