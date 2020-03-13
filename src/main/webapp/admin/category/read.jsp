@@ -22,7 +22,7 @@ String pagetitle = "Category";
 String pageaction = "read"; 
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
-
+p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/category/read");
 p.setVar("info", info);

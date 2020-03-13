@@ -2,6 +2,7 @@
 
     if(userId != null){
         //Step1
+        
         ProductDao product = new ProductDao();
 
         //Step2
@@ -24,11 +25,13 @@
         }
 
         //Step4
+       
 		String pagetitle = "Product"; 
 		String pageaction = ""; 
 		p.setVar("pagetitle", pagetitle);
 		p.setVar("pageaction", pageaction);
 		
+		p.setVar("userId", userId);
         p.setLayout("adminMain");
         p.setBody("admin/product/index");
         

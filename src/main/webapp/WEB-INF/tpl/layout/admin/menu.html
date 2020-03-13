@@ -1,52 +1,86 @@
-<div class="theme-setting-wrapper">
-	<div id="settings-trigger">
-		<i class="ti-settings"></i>
-	</div>
-	<div id="theme-settings" class="settings-panel">
-		<i class="settings-close ti-close"></i>
-		<p class="settings-heading">SIDEBAR SKINS</p>
-		<div class="sidebar-bg-options" id="sidebar-light-theme">
-			<div class="img-ss rounded-circle bg-light border mr-3"></div>
-			Light
-		</div>
-		<div class="sidebar-bg-options selected" id="sidebar-dark-theme">
-			<div class="img-ss rounded-circle bg-dark border mr-3"></div>
-			Dark
-		</div>
-		<p class="settings-heading mt-2">HEADER SKINS</p>
-		<div class="color-tiles mx-0 px-4">
-			<div class="tiles success"></div>
-			<div class="tiles warning"></div>
-			<div class="tiles danger"></div>
-			<div class="tiles light"></div>
-			<div class="tiles info"></div>
-			<div class="tiles dark"></div>
-			<div class="tiles default"></div>
-		</div>
-	</div>
-</div>
 
-
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-	<ul class="nav">
-		<li class="nav-item"><a class="nav-link" href="#"> <i
-				class="ti-home menu-icon"></i> <span class="menu-title">Dashboard</span>
-		</a></li>
-		<li class="nav-item "><a class="nav-link"
-			href="/admin/user/index.jsp"> <i class="ti-user menu-icon"></i> <span
-				class="menu-title">Users</span>
-		</a></li>
-		<li class="nav-item "><a class="nav-link "
-			href="/admin/menu/index.jsp"> <i class="ti-menu menu-icon"></i> <span
-				class="menu-title">Menu</span>
-		</a></li>
-		<li class="nav-item "><a class="nav-link "
-			href="/admin/category/index.jsp"> <i
-				class="ti-menu-alt menu-icon"></i> <span class="menu-title">Category</span>
-		</a></li>
-		<li class="nav-item "><a class="nav-link "
-			href="/admin/product/index.jsp"> <i class="ti-desktop menu-icon"></i>
-				<span class="menu-title">Product</span>
-		</a></li>
-	</ul>
-</nav>
+         <div id="sidebar" class="sidebar sidebar-fixed expandable sidebar-default d-none d-xl-block">
+          <div class="sidebar-inner">
+          
+           <div class="ace-scroll flex-grow-1" ace-scroll>
+            
+            <div class="sidebar-section my-2">
+            
+            </div>
+          
+            <ul class="nav has-active-border" role="navigation" aria-label="Main">
+                
+               
+               <li class="nav-item-caption">
+               		<span class="fadeable pl-3">MAIN</span>
+               		<span class="fadeinable mt-n2 text-125">&hellip;</span>
+               		<!--
+               			OR something like the following (with .hideable text)
+               		-->
+               		<!--
+               			<div class="hideable">
+               				<span class="pl-3">MAIN</span>
+               			</div>
+               			<span class="fadeinable mt-n2 text-125">&hellip;</span>
+               		-->
+               </li>
+               
+               
+               <li class="nav-item">
+               
+                 <a href="html/dashboard.html" class="nav-link">
+               	 <i class="nav-icon fa fa-tachometer-alt"></i>
+               	 <span class="nav-text fadeable">
+               	  <span>Dashboard</span>
+               	 </span>
+               
+               
+                 </a>
+               
+                 	<b class="sub-arrow"></b>
+                 
+               </li>
+               <li class="nav-item #if(${pagetitle} == 'Menu') active #end ">
+               
+                 <a href="/admin/menu/index.jsp" class="nav-link ">
+               	 <i class="nav-icon fa fa-list"></i>
+               	 <span class="nav-text fadeable">
+               	  <span>Menu</span>
+               	 </span>
+               	 </a>
+               </li>
+               
+               <li class="nav-item #if(${pagetitle} == 'Users') active #end">
+               
+                 <a href="/admin/user/index.jsp" class="nav-link ">
+               	 <i class="nav-icon fa fa-users"></i>
+               	 <span class="nav-text fadeable">
+               	  <span>Users</span>
+               	 </span>
+               	 </a>
+               </li>
+               <li class="nav-item #if(${pagetitle} == 'Category') active #end">
+               
+                 <a href="/admin/category/index.jsp" class="nav-link ">
+               	 <i class="nav-icon fa fa-list"></i>
+               	 <span class="nav-text fadeable">
+               	  <span>Category</span>
+               	 </span>
+               	 </a>
+               </li>
+               <li class="nav-item #if(${pagetitle} == 'Product') active #end">
+               
+                 <a href="/admin/product/index.jsp" class="nav-link ">
+               	 <i class="nav-icon fa fa-cube"></i>
+               	 <span class="nav-text fadeable">
+               	  <span>Product</span>
+               	 </span>
+               	 </a>
+               </li>
+            </ul>
+          
+           </div><!-- /.sidebar scroll -->
+          
+           
+          </div>         
+         </div><!-- /#sidebar -->

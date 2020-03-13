@@ -24,7 +24,11 @@
         }
 
         //Step4
-
+		String pagetitle = "Users"; 
+		String pageaction = ""; 
+		p.setVar("pagetitle", pagetitle);
+		p.setVar("pageaction", pageaction);
+		p.setVar("userId", userId);
         p.setLayout("adminMain");
         p.setBody("admin/user/index");
 		

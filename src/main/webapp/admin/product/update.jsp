@@ -96,7 +96,7 @@ if(userId != null){
 	String pageaction = "update"; 
 	p.setVar("pagetitle", pagetitle);
 	p.setVar("pageaction", pageaction);
-	
+	p.setVar("userId", userId);
 	p.setLayout("adminMain");
 	p.setBody("admin/product/update");
 	p.setVar("list", list);

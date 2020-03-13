@@ -31,6 +31,11 @@ if(m.isPost() && f.validate()) {
 	return;
 }
 
+String pagetitle = "Users"; 
+String pageaction = "delete"; 
+p.setVar("pagetitle", pagetitle);
+p.setVar("pageaction", pageaction);
+p.setVar("userId", userId);
 //Step6
 p.setLayout("adminMain");
 p.setBody("admin/user/delete");

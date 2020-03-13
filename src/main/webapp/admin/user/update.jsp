@@ -51,6 +51,11 @@ if(m.isPost() && f.validate()) {
 }
 
 //Step6
+String pagetitle = "Users"; 
+String pageaction = "edit"; 
+p.setVar("pagetitle", pagetitle);
+p.setVar("pageaction", pageaction);
+p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/user/update");
 p.setVar("info", info);

@@ -26,6 +26,7 @@
         //Step4
 		String pagetitle = "Category"; 
 		String pageaction = ""; 
+		p.setVar("userId", userId);
 		p.setVar("pagetitle", pagetitle);
 		p.setVar("pageaction", pageaction);
 		

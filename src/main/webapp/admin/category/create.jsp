@@ -44,7 +44,7 @@ String pagetitle = "Category";
 String pageaction = "add"; 
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
-		
+p.setVar("userId", userId);		
 p.setLayout("adminMain");
 p.setBody("admin/category/create");
 p.setVar("list", list);

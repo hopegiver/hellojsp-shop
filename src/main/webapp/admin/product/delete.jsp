@@ -41,7 +41,7 @@ String pagetitle = "Product";
 String pageaction = "delete"; 
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
-
+p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/product/delete");
 p.setVar("info", info);

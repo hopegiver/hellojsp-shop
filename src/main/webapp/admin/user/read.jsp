@@ -17,6 +17,11 @@ info.put(m.sha256("passwd"), m.htt(info.s("passwd")));
 info.put("reg_date", m.time("yyyy-MM-dd HH:mm", info.s("reg_date")));
 
 //Step5
+String pagetitle = "Users"; 
+String pageaction = "view"; 
+p.setVar("pagetitle", pagetitle);
+p.setVar("pageaction", pageaction);
+p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/user/read");
 p.setVar("info", info);

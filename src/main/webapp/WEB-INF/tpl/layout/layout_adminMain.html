@@ -6,62 +6,55 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Hellojsp Admin</title>
-
-<link rel="stylesheet"
-	href="/assets/admin/vendors/ti-icons/css/themify-icons.css">
-<link rel="stylesheet"
-	href="/assets/admin/vendors/css/vendor.bundle.base.css">
-
-<link rel="stylesheet"
-	href="/assets/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-
-<link rel="stylesheet"
-	href="/assets/admin/css/vertical-layout-light/style.css">
-
-<link rel="shortcut icon" href="/assets/admin/images/favicon.png" />
-
-</head>
+	<title>B.SHOP: Admin Page</title>
+ 
+  
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/regular.css">
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/solid.css">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/basictable/basictable.css">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/assets/admin/dist/css/ace-font.css">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/assets/admin/dist/css/ace.css">
+    
+    
+     
+  </head>
 <body class="sidebar-dark">
-	<div class="container-scroller">
-		#parse( "layout/admin/top_bar.html" )
+	<div class="body-container">
+     #parse( "layout/admin/top_bar.html" )
+      <div class="main-container">
+        #parse( "layout/admin/menu.html" )
+         <div role="main" class="main-content">
+         
+          #parse( $BODY )
 
-		<div class="container-fluid page-body-wrapper">
-
-			#parse( "layout/admin/menu.html" )
-			<div class="main-panel">
-				<div class="content-wrapper">#parse( $BODY )</div>
-
-				<footer class="footer">
-					<div
-						class="d-sm-flex justify-content-center justify-content-sm-between">
-						<span
-							class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
-							© 2020</span>
-					</div>
-				</footer>
-				<!-- partial -->
-			</div>
-
-		</div>
-	</div>
+          #parse( "layout/admin/footer.html" )
+        </div><!-- /main -->
+      </div><!-- /.main-container -->
 
 
+      <script type="text/javascript" src="/assets/admin/node_modules/jquery/dist/jquery.js"></script>
+      <script type="text/javascript" src="/assets/admin/node_modules/popper.js/dist/umd/popper.js"></script>
+      <script type="text/javascript" src="/assets/admin/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+      
+   
+      <script type="text/javascript" src="/assets/admin/node_modules/basictable/jquery.basictable.js"></script>
+      
+      
+      <script type="text/javascript" src="/assets/admin/dist/js/ace.js"></script>
+      
+      
+      <script type="text/javascript" src="/assets/admin/assets/js/demo.js"></script>
+      
+   </div>
 
-	<script src="/assets/admin/vendors/js/vendor.bundle.base.js"></script>
-	<script
-		src="/assets/admin/vendors/inputmask/jquery.inputmask.bundle.js"></script>
-
-	<script src="/assets/admin/vendors/datatables.net/jquery.dataTables.js"></script>
-	<script
-		src="/assets/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-
-	<script src="/assets/admin/js/off-canvas.js"></script>
-	<script src="/assets/admin/js/hoverable-collapse.js"></script>
-	<script src="/assets/admin/js/template.js"></script>
-	<script src="/assets/admin/js/settings.js"></script>
-	<script src="/assets/admin/js/todolist.js"></script>
-	<script src="/assets/admin/js/inputmask.js"></script>
-	<script src="/assets/admin/js/data-table.js"></script>
-</body>
+  </body>
 </html>

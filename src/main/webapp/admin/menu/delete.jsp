@@ -36,7 +36,7 @@ String pagetitle = "Menu";
 String pageaction = "delete"; 
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
-
+p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/menu/delete");
 p.setVar("info", info);

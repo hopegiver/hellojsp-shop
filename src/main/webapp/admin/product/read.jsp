@@ -22,7 +22,7 @@ if(userId != null){
 	String pageaction = "read"; 
 	p.setVar("pagetitle", pagetitle);
 	p.setVar("pageaction", pageaction);
-	
+	p.setVar("userId", userId);
 	p.setLayout("adminMain");
 	p.setBody("admin/product/read");
 	p.setVar("info", info);

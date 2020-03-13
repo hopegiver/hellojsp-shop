@@ -46,7 +46,7 @@ String pagetitle = "Menu";
 String pageaction = "update"; 
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
-
+p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/menu/update");
 p.setVar("list", list);
