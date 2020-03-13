@@ -1,0 +1,73 @@
+ 
+<div class="page-content container">
+  <div class="page-header">
+          <h1 class="page-title text-primary-d2">
+              Banner 
+               <small class="page-info text-secondary-d2">
+                  <i class="fa fa-angle-double-right text-80"></i>
+                  
+              </small>
+          </h1>
+  </div>
+	<div class="row" style="margin-bottom: 30px;">
+           <div class="col-6">
+	           	<form name="form1" method="get" class="form-inline">
+					<input type="text" name="s_keyword" class="form-control">
+					<input class="btn btn-default" type="submit" value="Search">
+				</form>
+				${form_script}
+           </div>
+           
+           <div class="col-6" style="text-align: right;">
+	      	   <a href="create.jsp" class="btn btn-small btn-primary">New</a>
+	       </div>
+    </div>
+  <div class="row">
+  	<div class="col-12">
+  		<table id="simple-table" class="table table-bordered table-bordered-x table-hover text-dark-m2">
+  			<thead class="text-dark-m3 bgc-grey-l4">
+  				<tr>
+  					
+  					<th width="5%">ID</th>
+                    <th width="15%">Image</th>
+                    <th width="">Text</th>
+                    
+                    <th width="20%">URL</th>
+                    
+                    <th width="15%">Manage</th>
+  				</tr>
+  			</thead>
+  									
+  			<tbody>
+  				
+				  <!--#foreach($item in $list)-->
+	              <tr>
+                       <td>${item.id}</td>
+                       <td><img src="/data/files/${item.photo_url}" alt="image" width="100" ></td>
+                       <td>${item.text1} <br> ${item.text2}</td>
+                       
+                       <td>${item.url}</td>
+                      
+                       <td>
+                       	
+                         <a href="read.jsp?id=${item.id}" class="btn btn-sm btn-outline-success">View</a>
+                         <a href="update.jsp?id=${item.id}" class="btn btn-sm btn-outline-primary">Edit</a>
+                         <a href="delete.jsp?id=${item.id}" class="btn btn-sm btn-outline-danger">Delete</a>
+                       </td>
+                   </tr>
+	              <!--#end-->
+  			</tbody>
+
+  			
+  		</table>
+  		${pagebar}
+  	</div>
+  </div>
+
+
+  <hr class="border-double my-4 brc-secondary-l2" />
+
+
+</div>
+
+        

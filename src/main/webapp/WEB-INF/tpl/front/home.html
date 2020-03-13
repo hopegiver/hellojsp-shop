@@ -2,32 +2,23 @@
         
     <section class="main-banner">
         <div class="banner-slider-wrapper" id="bannerSlider">
-            <div class="single-banner-slide bg-img h-630 d-flex align-items-center" style="background-image: url(/assets/front/img/banner/03.jpg);">
+        	#foreach($row in $bann)
+            <div class="single-banner-slide bg-img h-630 d-flex align-items-center" 
+            	style="background-image: url(/data/files/${row.photo_url});">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="slide-text">
-                                <span class="top-small-text">New fashion trend</span>
-                                <h1 class="fs-70 ln-80 m-t-45 m-b-60">High value<br> fashion brands<br>for women</h1>
-                                <a href="#" class="btn boxed-btn">explore now </a>
+                                <span class="top-small-text">${row.text1}</span>
+                                <h1 class="fs-70 ln-80 m-t-45 m-b-60">${row.text2}</h1>
+                                <a href="${row.url}" class="btn boxed-btn">explore now </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-banner-slide bg-img h-630 d-flex align-items-center" style="background-image: url(/assets/front/img/banner/01.jpg);">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-12">
-                            <div class="slide-text">
-                                <span class="top-small-text" data-animation="fadeInDown" data-delay=".2s">New fashion trend</span>
-                                <h1 class="fs-70 ln-80 m-t-45 m-b-60" data-animation="fadeInDown" data-delay=".4s">Premium fashion <br>  for women</h1>
-                                <a href="#" class="btn bg-btn" data-animation="fadeInUp" data-delay=".6s">explore now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            #end
+            
             
         </div>
     </section>

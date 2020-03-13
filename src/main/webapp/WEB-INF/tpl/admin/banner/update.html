@@ -1,0 +1,57 @@
+<div class="page-content container">
+  <div class="page-header">
+      <h1 class="page-title text-primary-d2">
+          Banner
+           <small class="page-info text-secondary-d2">
+              <i class="fa fa-angle-double-right text-80"></i>
+              view
+          </small>
+      </h1>
+  </div>
+	
+  <div class="row">
+  	<div class="col-9">
+  	
+  		<form name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
+			<div class="form-group">
+				<label class="control-label col-sm-2">Text 1</label>
+				<div class="col-sm-10"><input type="text" name="text1" class="form-control"></div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Text 2</label>
+				<div class="col-sm-10"><input type="text" name="text2"  class="form-control"></div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">URL</label>
+				<div class="col-sm-10"><input type="text" name="url" class="form-control"></div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2">Photo File</label>
+				<div class="col-sm-10">
+					<input type="file" name="photo_url" class="form-control">
+					<!--#if($info.att_file_name != '')-->
+					${info.photo_url} <label class="label label-danger">Delete</label> <input type="checkbox" name="photo_url_del" value="Y">
+					<!--#end-->
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" value="Save" class="btn btn-primary">
+					<input type="button" value="Cancel" class="btn btn-default" onclick="history.go(-1)">
+				</div>
+			</div>
+		</form>
+		${form_script}
+       	
+	
+	
+			
+  	</div>
+  </div>
+
+
+  <hr class="border-double my-4 brc-secondary-l2" />
+
+
+</div>
