@@ -16,9 +16,7 @@ f.addElement("photo_url", null, "title:'photo_url'");
 //Step3
 if(m.isPost() && f.validate()) {
 
-	int pro = product.getOneInt("select id from tb_product order by desc");
 	
-	//m.p(pro.id); if(true) return;
 	product.item("category_id", f.get("category_id"));
 	product.item("sub_category_id", f.get("sub_category_id"));
 	product.item("product_name", f.get("product_name"));

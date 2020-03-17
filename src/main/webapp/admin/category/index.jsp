@@ -15,7 +15,7 @@
         lm.setFields("a.*");
         lm.addWhere("a.status != -1");
         lm.addWhere("a.parent_id = 0");
-        lm.addSearch("a.category_name, a.description, ", f.get("s_keyword"), "LIKE");
+        
         lm.setOrderBy("a.sort ASC");
 
         //Step3
@@ -32,7 +32,7 @@
         sub.setFields("a.*");
         sub.addWhere("a.status != -1");
         sub.addWhere("a.parent_id != 0");
-        sub.addSearch("a.category_name, a.description, ", f.get("s_keyword"), "LIKE");
+        
         sub.setOrderBy("a.sort ASC");
 
         //Step3
@@ -41,8 +41,6 @@
         	sublist.put("reg_date", m.time("yyyy-MM-dd", sublist.s("reg_date")));
         }
         
-        
-		
         
         //Step4
 		String pagetitle = "Category"; 

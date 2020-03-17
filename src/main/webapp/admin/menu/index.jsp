@@ -14,8 +14,8 @@
         lm.setTable("tb_menu a");
         lm.setFields("a.*");
         lm.addWhere("a.status != -1");
-        lm.addSearch("a.module, a.menu_name, ", f.get("s_keyword"), "LIKE");
-        lm.setOrderBy("a.id DESC");
+        lm.addWhere("a.parent_id = 0");
+        lm.setOrderBy("a.id asc");
 
         //Step3
         DataSet list = lm.getDataSet();
@@ -23,7 +23,21 @@
             list.put("reg_date", m.time("yyyy-MM-dd", list.s("reg_date")));
         }
         
+        ListManager sub = new ListManager();
+        //lm.setDebug(out);
+        sub.setRequest(request);
+        sub.setTable("tb_menu a");
+        sub.setFields("a.*");
+        sub.addWhere("a.status != -1");
+        sub.addWhere("a.parent_id != 0");
         
+        sub.setOrderBy("a.sort asc");
+
+        //Step3
+        DataSet sublist = sub.getDataSet();
+        while(sublist.next()) {
+        	sublist.put("reg_date", m.time("yyyy-MM-dd", sublist.s("reg_date")));
+        }
 
         //Step4
 		String pagetitle = "Menu"; 
@@ -35,6 +49,7 @@
         p.setBody("admin/menu/index");
         
         p.setVar("list", list);
+        p.setVar("sublist", sublist);
         p.setVar("total_cnt", lm.getTotalNum());
         p.setVar("pagebar", lm.getPaging());
         p.setVar("form_script", f.getScript());

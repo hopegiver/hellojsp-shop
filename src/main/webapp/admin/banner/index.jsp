@@ -14,7 +14,7 @@
         lm.setTable("tb_banner a");
         lm.setFields("a.*");
         lm.addWhere("a.status != -1");
-        lm.addSearch("a.name", f.get("s_keyword"), "LIKE");
+        //lm.addSearch("a.name", f.get("s_keyword"), "LIKE");
         lm.setOrderBy("a.id DESC");
 
         //Step3
