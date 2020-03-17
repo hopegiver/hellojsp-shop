@@ -3,9 +3,7 @@ UserDao user = new UserDao();
 	
 	auth.destroy();
 	
-	p.setBody("admin/login");
-	p.setVar("form_script", f.getScript());
-	p.print();
+	m.redirect("login.jsp");
 %>
 
 </script>

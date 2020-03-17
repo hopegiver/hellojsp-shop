@@ -10,9 +10,14 @@ if(id == 0) { m.jsError("Primary Key is required"); return; }
 //Step3
 DataSet info = category.find("id = " + id);
 
+
 if(!info.next()) { m.jsError("No Data"); return; }
 
+DataSet parent_info = category.find("id = " + info.s("parent_id"));
+
+
 //Step4
+parent_info.put("category_name", m.htt(parent_info.s("category_name")));
 info.put("category_name", m.htt(info.s("category_name")));
 
 info.put("reg_date", m.time("yyyy-MM-dd HH:mm", info.s("reg_date")));
@@ -26,6 +31,7 @@ p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/category/read");
 p.setVar("info", info);
+p.setVar("parent_info", parent_info);
 p.print();
 
 %>

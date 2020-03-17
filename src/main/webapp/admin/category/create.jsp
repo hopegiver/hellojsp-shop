@@ -35,6 +35,7 @@ lm.setRequest(request);
 lm.setTable("tb_category a");
 lm.setFields("a.*");
 lm.addWhere("a.status != -1");
+lm.addWhere("a.parent_id = 0");
 lm.setOrderBy("a.id ASC");
 
 DataSet list = lm.getDataSet();

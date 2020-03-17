@@ -1,5 +1,5 @@
  
-<div class="page-content container">
+<div class="page-content ">
   <div class="page-header">
           <h1 class="page-title text-primary-d2">
               ${pagetitle} 
@@ -13,22 +13,22 @@
            <div class="col-6">
 	           	<form name="form1" method="get" class="form-inline">
 					<input type="text" name="s_keyword" class="form-control">
-					<input class="btn btn-default" type="submit" value="Search">
+					<input class="btn btn-success" type="submit" value="Search">
 				</form>
 				${form_script}
            </div>
            
            <div class="col-6" style="text-align: right;">
-	      	   <a href="create.jsp" class="btn btn-small btn-primary">New</a>
+	      	   <a href="create.jsp" class="btn btn-small btn-success">New</a>
 	       </div>
     </div>
   <div class="row">
   	<div class="col-12">
   		<table id="simple-table" class="table table-bordered table-bordered-x table-hover text-dark-m2">
             <thead class="text-dark-m3 bgc-grey-l4">
-              <tr >
+              <tr class="bgc-primary-m1 text-white">
                   <th width="5%">ID</th>
-                  <th width="15%">Parent ID</th>
+                  
                   <th>Category name</th>
                   <th>Description</th>
                   <th>Order</th>
@@ -37,9 +37,8 @@
             </thead>
             <tbody>
             <!--#foreach($item in $list)-->
-              <tr class="bgc-h-default-l3 d-style">
+              <tr class="bgc-primary-l3">
                   <td>${item.id}</td>
-                  <td>${item.parent_id}</td>
                   
                   <td> ${item.category_name}</td>
                   <td>${item.description}</td>
@@ -51,6 +50,23 @@
                     <a href="delete.jsp?id=${item.id}" class="btn btn-sm btn-outline-danger">Delete</a>
                   </td>
               </tr>
+              #foreach($subitem in $sublist)
+              	#if($subitem.parent_id == $item.id)
+              	<tr class="bgc-h-default-l3 d-style">
+                  <td>${subitem.id}</td>
+                  
+                  <td style="padding-left: 50px;"> -${subitem.category_name}</td>
+                  <td>${subitem.description}</td>
+                  <td>${subitem.sort}</td>
+                  <td>
+                  	
+                    <a href="read.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-success">View</a>
+                    <a href="update.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a href="delete.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-danger">Delete</a>
+                  </td>
+              	</tr>
+              	#end
+              #end
               <!--#end-->
               
             </tbody>
