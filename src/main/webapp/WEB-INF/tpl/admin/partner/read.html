@@ -1,8 +1,7 @@
-
 <div class="page-content container">
   <div class="page-header">
       <h1 class="page-title text-primary-d2">
-          ${pagetitle} 
+          ${pagetitle}  
            <small class="page-info text-secondary-d2">
               <i class="fa fa-angle-double-right text-80"></i>
               ${pageaction}
@@ -17,21 +16,13 @@
        	<form class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
          
 		<div class="form-group row">
-			<label class=" col-md-3">Parent category:</label>
-			<div class="col-md-9">${info.parent_id}</div>
-		</div>
-		<div class="form-group row">
-			<label class="control-label col-sm-3">Category name:</label>
-			<div class="col-sm-9">${info.category_name}</div>
+			<label class=" col-md-3">Name:</label>
+			<div class="col-md-9">${info.name}</div>
 		</div>
 		
 		<div class="form-group row">
-			<label class="control-label col-sm-3">Description:</label>
-			<div class="col-sm-9">${info.description}</div>
-		</div>
-		<div class="form-group row">
-			<label class="control-label col-sm-3">Order:</label>
-			<div class="col-sm-9">${info.sort}</div>
+			<label class="control-label col-sm-3">Photo:</label>
+			<div class="col-sm-9"><img src="/data/files/${info.photo_url}" alt="image" width="150" ></div>
 		</div>
 		<div class="form-group row">
 			<label class="control-label col-sm-3">Date:</label>

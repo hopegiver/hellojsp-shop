@@ -1,0 +1,125 @@
+<main>
+       
+    <section class="breadcrumb-area bg-light p-t-80 p-b-120 fs-14 link-color-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="m-b-30 fs-40 fw-600">Single Product</h2>
+                    <ul class="list-inline">
+                        <li><a href="/">Home</a></li>
+                        <li>-</li>
+                        <li><a href="">Single Product</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <section class="single-product-wrapper p-t-120 p-b-120">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-lg-2 col-sm-3 col-3">
+                   
+                    <div class="gallery-dots"></div>
+                </div>
+                <div class="col-lg-6 col-sm-9 col-9">
+                    <div class="product-gallery position-relative">
+                        
+                        <div class="gallery-arrows"></div>
+
+                        
+                        <div id="product-gallery-active">
+                        	
+                            <div class="single-gallery-itam"  data-thumb="/data/files/${info.photo_url}">
+                                <img src="/data/files/${info.photo_url}" alt="Product Image">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <!-- Single-product summary -->
+                    <div class="single-product-summary lh-27">
+                        <h4 class="fs-22 lh-45">${info.product_name}</h4>
+                        <p class="lh-45 fs-18 color-1">$ ${info.price}</p>
+                        <div class="divider-2 m-t-25 m-b-25"></div>
+                        
+                        <form>
+                            <!-- quantity input -->
+                            <div class="quantity-area clearfix d-flex align-items-center">
+                                <label for="quantity">Quantity: </label>
+                                <div class="quantity-input m-l-20">
+                                    <div class="quantity-down" id="quantityDown"><i class="ti ti-angle-left"></i></div>
+                                    <input id="quantity" type="number" value="1" name="quantity">
+                                    <div class="quantity-up" id="quantityUP"><i class="ti ti-angle-right"></i></div>
+                                </div>
+                            </div>
+                            <div class="divider-2 m-t-25 m-b-25"></div>
+                            <div class="color-option">
+                                <label for="quantity">Color: </label>
+                            </div>
+                        </form>
+                        <!-- Products Meta -->
+                        <div class="product-meta m-t-20">
+                            <p class="m-b-20"><span>Size</span>: Watch, Accessories, Gadget</p>
+                            
+                        </div>
+                        <!-- Add to cart btn -->
+                        <div class="add-to-cart m-t-35">
+                            <input type="submit" class="btn boxed-btn" value="add to cart">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-tabs p-t-100">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item"><a href="#description" class="nav-link active" data-toggle="tab" role="tab">description</a></li>
+                    <li class="nav-item"><a href="#information" class="nav-link" data-toggle="tab" role="tab">information</a></li>
+                    
+                </ul>
+
+                <div class="tab-content m-t-45 lh-27">
+                    <div class="tab-pane fade in active show" id="description" role="tabpanel">
+                        ${info.summary}
+                    </div>
+                    <div class="tab-pane fade" id="information" role="tabpanel">
+                        ${info.description}
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="related-products p-t-100">
+                <h2 class="fs-40 m-b-55">Related Products</h2>
+
+                <div class="m-r--15 m-l--15" id="relatedSlideActive">
+                    <div class="related-slider">
+                    #foreach($item in $list)
+                        <div class="single-product text-center p-r-15 p-l-15">
+                            <div class="product-action position-relative" style="height: 350px;">
+                                <div class="product-img">
+                                    <img src="/data/files/${item.photo_url}" alt="Product">
+                                </div>
+                                <div class="action-list ab-b-l w-full trans-06">
+                                    <ul>
+                                        <li><a href="/product/detail.jsp?id=${item.id}"><i class="ti ti-search"></i></a></li>
+                                        <li><a href="#!" class="add-to-cart" data-name="Blue Modern Sunglass"><i class="ti ti-bag"></i></a></li>
+                                        <li><a href="#!" class="add-wishlist" data-name="Blue Modern Sunglass"><i class="ti ti-heart"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-content m-t-30 text-left">
+                                <h6 style="height: 30px; overflow:hidden;"><a href="single-product-2.html">${item.product_name}</a></h6>
+                                <p class="price">$${item.price}</p>
+                            </div>
+                        </div>
+                    #end
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -41,12 +41,12 @@
                     <div class="single-product m-b-60 text-center">
                         <div class="product-action position-relative">
                             <div class="product-img">
-                                <img src="/data/files/${item.photo_url}" style="" alt="Product">
+                                <img src="/data/files/${item.photo_url}" style="max-height: 250px; min-height: 249px; " alt="Product">
                             </div>
                             <div class="action-list ab-b-l w-full trans-06">
                                 <ul>
-                                    <li><a href="single-product.html"><i class="ti ti-search"></i></a></li>
-                                    <li><a href="single-product.html" class="add-to-cart" data-name="Woman Pink Purse Isolated"><i class="ti ti-bag"></i></a></li>
+                                    <li><a href="/product/detail.jsp?id=${item.id}"><i class="ti ti-search"></i></a></li>
+                                    <li><a href="#!" class="add-to-cart" data-name="Woman Pink Purse Isolated"><i class="ti ti-bag"></i></a></li>
                                     <li><a href="#" class="add-wishlist" data-name="Woman Pink Purse Isolated"><i class="ti ti-heart"></i></a></li>
                                 </ul>
                             </div>
@@ -54,7 +54,7 @@
                         <div class="product-content m-t-30">
                             
                             <h6 style="height: 30px; overflow:hidden;"><a href="/product/" >${item.product_name}</a></h6>
-                            <p class="price top-small-text">$16.50</p>
+                            <p class="price top-small-text">$${item.price}</p>
                         </div>
                     </div>
                 </div>
@@ -70,30 +70,11 @@
     <div class="brands p-t-60 p-b-60 bg-light">
         <div class="container">
             <div id="brandsActive">
+            #foreach($row in $part)
                 <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/01.png" alt="Brands"></a>
+                    <a href="#"><img src="/data/files/${row.photo_url}" alt="Brands"></a>
                 </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/02.png" alt="Brands"></a>
-                </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/03.png" alt="Brands"></a>
-                </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/04.png" alt="Brands"></a>
-                </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/01.png" alt="Brands"></a>
-                </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/02.png" alt="Brands"></a>
-                </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/03.png" alt="Brands"></a>
-                </div>
-                <div class="single-brand d-flex align-items-center">
-                    <a href="#"><img src="/assets/front/img/brands/04.png" alt="Brands"></a>
-                </div>
+            #end    
             </div>
         </div>
     </div>

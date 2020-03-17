@@ -7,7 +7,7 @@ CategoryDao category = new CategoryDao();
 f.addElement("parent_id", null, "title:'parent_id'");
 f.addElement("category_name", null, "title:'category_name', required:true");
 f.addElement("description", null, "title:'description'");
-
+f.addElement("sort", null, "title:'sort'");
 //Step3
 if(m.isPost() && f.validate()) {
 
@@ -16,6 +16,7 @@ if(m.isPost() && f.validate()) {
 	category.item("category_name", f.get("category_name"));
 	category.item("description", f.get("description"));
 	category.item("reg_date", m.time("yyyyMMddHHmmss"));
+	category.item("sort", f.get("sort"));
 	category.item("status", 1);
 
 	

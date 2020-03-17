@@ -3,6 +3,7 @@
 if(userId != null){
 	//Step1
 	ProductDao product = new ProductDao();
+	CategoryDao category = new CategoryDao();
 	CategoryModuleDao categoryModule = new CategoryModuleDao();
 	
 	//Step2
@@ -12,17 +13,12 @@ if(userId != null){
 	//Step3
 	DataSet info = product.find("id = " + id);
 	
-	DataSet cat_info = categoryModule.find("module_id = " + id);
-	
-	if(!cat_info.next()) { m.jsError("No Data"); return; }
-	DataSet cat_sub_info = categoryModule.find("module_id = " + id," * ", "id desc", 1);
-	if(!cat_sub_info.next()) { m.jsError("No Data"); return; }
 	
 	if(!info.next()) { m.jsError("No Data"); return; }
 	
 	//Step4
-	f.addElement("category_id", cat_info.s("category_id"), "title:'category_id'");
-	f.addElement("sub_category_id", cat_sub_info.s("category_id"), "title:'sub_category_id'");
+	f.addElement("category_id", info.s("category_id"), "title:'category_id'");
+	f.addElement("sub_category_id", info.s("sub_category_id"), "title:'sub_category_id'");
 	f.addElement("product_name", info.s("product_name"), "title:'product_name', required:true");
 	f.addElement("price", info.s("price"), "title:'price', required:true");
 	f.addElement("summary", info.s("summary"), "title:'summary', required:true");
@@ -31,6 +27,8 @@ if(userId != null){
 	//Step5
 	if(m.isPost() && f.validate()) {
 	
+		product.item("category_id", f.get("category_id"));
+		product.item("sub_category_id", f.get("sub_category_id"));
 		product.item("product_name", f.get("product_name"));
 		product.item("price", f.get("price"));
 		product.item("summary", f.get("summary"));
@@ -47,24 +45,6 @@ if(userId != null){
 			return;
 		}
 		
-		categoryModule.delete("module_id = " + id);
-		categoryModule.item("category_id", f.get("category_id"));
-		categoryModule.item("module_id", id);
-		
-		if(!categoryModule.insert()) {
-			
-			m.jsError(" occurred(category insert)");
-			return;
-		}
-		
-		categoryModule.item("category_id", f.get("sub_category_id"));
-		categoryModule.item("module_id", id);
-		
-		if(!categoryModule.insert()) {
-			
-			m.jsError(" occurred(sub category insert)");
-			return;
-		}
 	
 		m.redirect("index.jsp");
 		return;
@@ -81,15 +61,12 @@ if(userId != null){
 	
 	DataSet list = lm.getDataSet();
 	
-	ListManager lmsub = new ListManager();
-	lmsub.setRequest(request);
-	lmsub.setTable("tb_category a");
-	lmsub.setFields("a.*");
-	lmsub.addWhere("a.status != -1");
-	lmsub.addWhere("a.parent_id != 0");
-	lmsub.setOrderBy("a.id ASC");
-	
-	DataSet sublist = lmsub.getDataSet();
+	DataSet sublist = category.query(
+			"select a.*, b.category_name as parent_name"
+			+" from tb_category a"
+			+ " left join tb_category b on a.parent_id = b.id "
+			+ " where a.parent_id != "+ 0
+			);
 	
 	//Step6
 	String pagetitle = "Product"; 
@@ -102,7 +79,6 @@ if(userId != null){
 	p.setVar("list", list);
 	p.setVar("sublist", sublist);
 	p.setVar("info", info);
-	p.setVar("cat_info", cat_info);
 	
 	p.setVar("form_script", f.getScript());
 	p.print();

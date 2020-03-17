@@ -22,6 +22,8 @@
         while(list.next()) {
             list.put("reg_date", m.time("yyyy-MM-dd", list.s("reg_date")));
         }
+        
+        
 
         //Step4
 		String pagetitle = "Menu"; 

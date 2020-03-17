@@ -15,13 +15,14 @@ if(!info.next()) { m.jsError("No Data"); return; }
 f.addElement("parent_id", info.s("parent_id"), "title:'parent_id'");
 f.addElement("category_name", info.s("category_name"), "title:'category_name', required:true");
 f.addElement("description", info.s("description"), "title:'description'");
+f.addElement("sort", info.s("sort"), "title:'sort'");
 //Step5
 if(m.isPost() && f.validate()) {
 
 	category.item("parent_id", f.get("parent_id"));
 	category.item("category_name", f.get("category_name"));
 	category.item("description", f.get("description"));
-
+	category.item("sort", f.get("sort"));
 	//blog.setDebug(out);
 	if(!category.update("id = " + id)) {
 		m.jsAlert("Error occurred(update)");

@@ -2,6 +2,7 @@
 
 //Step1
 ProductDao product = new ProductDao();
+CategoryDao category = new CategoryDao();
 CategoryModuleDao categoryModule = new CategoryModuleDao();
 
 //Step2
@@ -18,7 +19,8 @@ if(m.isPost() && f.validate()) {
 	int pro = product.getOneInt("select id from tb_product order by desc");
 	
 	//m.p(pro.id); if(true) return;
-	//product.item("category_id", f.get("category_id"));
+	product.item("category_id", f.get("category_id"));
+	product.item("sub_category_id", f.get("sub_category_id"));
 	product.item("product_name", f.get("product_name"));
 	product.item("price", f.get("price"));
 	product.item("summary", f.get("summary"));
@@ -39,24 +41,6 @@ if(m.isPost() && f.validate()) {
 		return;
 	}
 	
-	categoryModule.item("category_id", f.get("category_id"));
-	categoryModule.item("module_id", newId);
-	
-	if(!categoryModule.insert()) {
-		
-		m.jsError(" occurred(category insert)");
-		return;
-	}
-	
-	categoryModule.item("category_id", f.get("sub_category_id"));
-	categoryModule.item("module_id", newId);
-	
-	if(!categoryModule.insert()) {
-		
-		m.jsError(" occurred(sub category insert)");
-		return;
-	}
-
 	m.redirect("index.jsp");
 	return;
 }
@@ -72,15 +56,13 @@ lm.setOrderBy("a.id ASC");
 
 DataSet list = lm.getDataSet();
 
-ListManager lmsub = new ListManager();
-lmsub.setRequest(request);
-lmsub.setTable("tb_category a");
-lmsub.setFields("a.*");
-lmsub.addWhere("a.status != -1");
-lmsub.addWhere("a.parent_id != 0");
-lmsub.setOrderBy("a.id ASC");
 
-DataSet sublist = lmsub.getDataSet();
+DataSet sublist = category.query(
+		"select a.*, b.category_name as parent_name"
+		+" from tb_category a"
+		+ " left join tb_category b on a.parent_id = b.id "
+		+ " where a.parent_id != "+ 0
+		);
 
 //Step4
 //p.setDebug(out);

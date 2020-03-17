@@ -28,7 +28,7 @@
                
                <li class="nav-item">
                
-                 <a href="html/dashboard.html" class="nav-link">
+                 <a href="/admin" class="nav-link">
                	 <i class="nav-icon fa fa-tachometer-alt"></i>
                	 <span class="nav-text fadeable">
                	  <span>Dashboard</span>
@@ -83,6 +83,15 @@
                	 <i class="nav-icon fa fa-image"></i>
                	 <span class="nav-text fadeable">
                	  <span>Banner</span>
+               	 </span>
+               	 </a>
+               </li>
+               <li class="nav-item #if(${pagetitle} == 'Partner') active #end">
+               
+                 <a href="/admin/partner/index.jsp" class="nav-link ">
+               	 <i class="nav-icon fa fa-user"></i>
+               	 <span class="nav-text fadeable">
+               	  <span>Partner</span>
                	 </span>
                	 </a>
                </li>

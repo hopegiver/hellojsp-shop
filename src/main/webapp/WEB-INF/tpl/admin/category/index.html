@@ -28,9 +28,10 @@
             <thead class="text-dark-m3 bgc-grey-l4">
               <tr >
                   <th width="5%">ID</th>
-                  <th width="20%">Parent ID</th>
+                  <th width="15%">Parent ID</th>
                   <th>Category name</th>
                   <th>Description</th>
+                  <th>Order</th>
                   <th width="15%">Manage</th>
               </tr>
             </thead>
@@ -42,6 +43,7 @@
                   
                   <td> ${item.category_name}</td>
                   <td>${item.description}</td>
+                  <td>${item.sort}</td>
                   <td>
                   	
                     <a href="read.jsp?id=${item.id}" class="btn btn-sm btn-outline-success">View</a>

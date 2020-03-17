@@ -1,17 +1,18 @@
 <%@ page contentType="text/html; charset=utf-8" %><%@ include file="/init.jsp" %><%
 
 ProductDao product = new ProductDao();
-BannerDao banner = new BannerDao();	
-PartnerDao partner = new PartnerDao();	
-	DataSet list = product.find("status != -1", "*", "id DESC", 8);
 	
-	DataSet bann = banner.find("status != -1", "*", "id DESC", 3);
+	int id = m.reqInt("id");
+	DataSet info = product.find("id = " + id);
 	
-	DataSet part = partner.find("status != -1", "*", "id ASC");
+	while(info.next()) {
+		info.put("reg_date", m.time("yyyy-MM-dd", info.s("reg_date")));
+	}
+	
+	DataSet list = product.find("status != -1", "*", "id DESC", 3);
 	while(list.next()) {
 	    list.put("reg_date", m.time("yyyy-MM-dd", list.s("reg_date")));
 	}
-	
 	//Step4
 	String pagetitle = "Product"; 
 	String pageaction = ""; 
@@ -19,11 +20,10 @@ PartnerDao partner = new PartnerDao();
 	p.setVar("pageaction", pageaction);
 	
 	p.setLayout("frontMain");
-	p.setBody("front/home");
+	p.setBody("front/product_detail");
 	
+	p.setVar("info", info);
 	p.setVar("list", list);
-	p.setVar("bann", bann);
-	p.setVar("part", part);
     p.print();
 
 
