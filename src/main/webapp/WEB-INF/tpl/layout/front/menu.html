@@ -5,20 +5,32 @@
 			<div class="col-lg-5 d-none d-lg-block">
 				<nav class="main-menu fs-12 lh-70">
 					<ul>
-						<li class="active"><a href="index-2.html">Home</a>
+						<li class="active"><a href="/">Home</a>
+						</li>
+						#foreach($menu in $menu_list)
+							<li>
+							#if($menu.module_id == 0)
+							<a href="${menu.module}.jsp">${menu.menu_name}</a>
+							#else
+							<a href="${menu.module}.jsp?id=${menu.module_id}">${menu.menu_name}</a>
+							#end
+
 							<ul class="sub-menu">
-								<li><a href="index-2.html">Home 01</a></li>
-								<li><a href="home-02.html">Home 02</a></li>
-								<li><a href="home-03.html">Home 03</a></li>
-							</ul></li>
-						<li><a href="category.html">Category</a></li>
+								#foreach($submenu in $sub_menu_list)
+								#if($submenu.parent_id == $menu.id)
+								<li>
+									#if($menu.module_id == 0)
+									<a href="${menu.module}.jsp">${submenu.menu_name}</a>
+									#else
+									<a href="${menu.module}.jsp?id=${menu.module_id}">${submenu.menu_name}</a>
+									#end
+								</li>
+								#end
+								#end
+							</ul>
+							</li>
+						#end
 
-
-
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="cart.html">Cart</a></li>
-						<li><a href="checkout.html">Checkout</a></li>
-						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</nav>
 			</div>

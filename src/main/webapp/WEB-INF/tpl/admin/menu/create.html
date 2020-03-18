@@ -18,8 +18,14 @@
 					<div class="col-sm-4">
 						<select name="parent_id" class="form-control">
 							<option value="0">Select</option>
-							<!--#foreach($item in $list)-->
-							<option value="${item.id}">${item.menu_name}</option>
+							<!--#foreach($item in $main_menu)-->
+
+								<option value="${item.id}">${item.menu_name}</option>
+<!--								#foreach($sub in $sub_menu)-->
+<!--									#if($sub.parent_id == $item.id)-->
+<!--										<option value="${sub.id}" >&#45;&#45;${sub.menu_name}</option>-->
+<!--									#end-->
+<!--								#end-->
 							<!--#end-->
 						</select>
 						
@@ -36,7 +42,8 @@
 						<select name="module" class="form-control">
 							<option value="0">Select</option>
 							<option value="content">Content</option>
-							<option value="product">Product</option>
+							<option value="category">Product category</option>
+
 							<option value="blog">Blog</option>
 						</select>
 					</div>

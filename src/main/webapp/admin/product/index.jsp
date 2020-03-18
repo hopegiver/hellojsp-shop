@@ -25,8 +25,8 @@
             list.put("reg_date", m.time("yyyy-MM-dd", list.s("reg_date")));
 
         }
-        DataSet cat_info = category.find("parent_id = " + 0);
-        DataSet sub_cat_info = category.find("parent_id != " + 0);
+        DataSet cat_info = category.find("parent_id = " + 0 + " AND status = " + 1 + " ");
+        DataSet sub_cat_info = category.find("parent_id != " + 0 + " AND status = " + 1 + " ");
         //Step4
 
 		String pagetitle = "Product"; 

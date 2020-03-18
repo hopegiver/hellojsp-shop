@@ -16,7 +16,7 @@ if(m.isPost() && f.validate()) {
 	
 	menu.item("parent_id", f.get("parent_id"));
 	menu.item("module", f.get("module"));
-	menu.item("module_id", f.get("module"));
+	menu.item("module_id", f.get("module_id"));
 	menu.item("menu_name", f.get("menu_name"));
 	
 	menu.item("reg_date", m.time("yyyyMMddHHmmss"));
@@ -32,15 +32,8 @@ if(m.isPost() && f.validate()) {
 	return;
 }
 
-ListManager lm = new ListManager();
-//lm.setDebug(out);
-lm.setRequest(request);
-lm.setTable("tb_menu a");
-lm.setFields("a.*");
-lm.addWhere("a.status != -1");
-lm.setOrderBy("a.id DESC");
+DataSet main_menu = menu.find("parent_id = " + 0 + " AND status = " + 1 + " ");
 
-DataSet list = lm.getDataSet();
 
 //Step4
 //p.setDebug(out);
@@ -51,7 +44,8 @@ p.setVar("pageaction", pageaction);
 p.setVar("userId", userId);
 p.setLayout("adminMain");
 p.setBody("admin/menu/create");
-p.setVar("list", list);
+p.setVar("main_menu", main_menu);
+
 p.setVar("form_script", f.getScript());
 p.print();
 

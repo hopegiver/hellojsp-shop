@@ -12,8 +12,7 @@ DataSet info = menu.find("id = " + id);
 if(!info.next()) { m.jsError("No Data"); return; }
 
 //Step4
-info.put("login_id", m.htt(info.s("login_id")));
-info.put(m.sha256("passwd"), m.htt(info.s("passwd")));
+
 info.put("reg_date", m.time("yyyy-MM-dd HH:mm", info.s("reg_date")));
 
 //Step5
