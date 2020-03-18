@@ -47,8 +47,8 @@
                     <a href="delete.jsp?id=${item.id}" class="btn btn-sm btn-outline-danger">Delete</a>
                   </td>
               </tr>
-              #foreach($subitem in $item.child_category)
-              	
+              #foreach($subitem in $sublist)
+                #if($subitem.parent_id == $item.id)
               	<tr class="bgc-h-default-l3 d-style">
                   <td>${subitem.id}</td>
                   
@@ -62,7 +62,7 @@
                     <a href="delete.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-danger">Delete</a>
                   </td>
               	</tr>
-              	
+                #end
               #end
               <!--#end-->
               

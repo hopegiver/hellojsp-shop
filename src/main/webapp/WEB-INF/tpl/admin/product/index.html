@@ -38,11 +38,25 @@
   			</thead>
   									
   			<tbody>
-  				
+
 				  <!--#foreach($item in $list)-->
 	              <tr class="bgc-h-default-l3 d-style">
 	                  <td>${item.id}</td>
-	                  <td>${item.category_name} > ${item.sub_category_name}</td>
+	                  <td>
+						  #foreach($cat in $cat_info)
+							  #if($cat.id == $item.category_id)
+							  <span>${cat.category_name}</span>
+							  #end
+						  #end
+
+						  #foreach($sub_cat in $sub_cat_info)
+							  #if($sub_cat.id == $item.sub_category_id)
+							  <span> > ${sub_cat.category_name}</span>
+							  #end
+						  #end
+
+
+					  </td>
 	                  <td><img src="/data/files/${item.photo_url}" alt="image" width="100" ></td>
 	                  
 	                  <td>${item.product_name}</td>

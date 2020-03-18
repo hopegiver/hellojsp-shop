@@ -22,13 +22,18 @@
         DataSet list = lm.getDataSet();
         while(list.next()) {
             list.put("reg_date", m.time("yyyy-MM-dd", list.s("reg_date")));
-            
-            DataSet child_cat = cat.find("parent_id = " + list.s("id"));
-            child_cat.next();
-            list.put("child_category", child_cat);
+
         }
-        
-        
+
+        ListManager sub = new ListManager();
+        //lm.setDebug(out);
+        sub.setRequest(request);
+        sub.setTable("tb_category a");
+        sub.setFields("a.*");
+        sub.addWhere("a.status != -1");
+        sub.addWhere("a.parent_id != 0");
+        sub.setOrderBy("a.sort ASC");
+        DataSet sublist = sub.getDataSet();
         //Step4
 		String pagetitle = "Category"; 
 		String pageaction = ""; 
@@ -40,7 +45,7 @@
         p.setBody("admin/category/index");
         
         p.setVar("list", list);
-       
+        p.setVar("sublist", sublist);
         p.setVar("total_cnt", lm.getTotalNum());
         p.setVar("pagebar", lm.getPaging());
         p.setVar("form_script", f.getScript());
