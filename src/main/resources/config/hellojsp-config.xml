@@ -3,7 +3,7 @@
 <config>
 	<env>
 		<logDir>c:/logs</logDir>
-		<dataDir>D:/baaska/workspace/hellojsp-blog/src/main/webapp/data</dataDir>
+		<dataDir>D:/baaska/workspace/hellojsp-shop/src/main/webapp/data</dataDir>
 		<mailFrom>postmaster@test.com</mailFrom>
 		<maxFileSize>1024</maxFileSize>
 	</env>

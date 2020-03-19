@@ -1,4 +1,4 @@
-<div class="page-content container">
+<div class="page-content ">
   <div class="page-header">
       <h1 class="page-title text-primary-d2">
           ${pagetitle} 
@@ -13,8 +13,8 @@
   	<div class="col-9">
   		<form class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
            
-				<div class="form-group">
-					<label class="control-label col-sm-3">Parent category</label>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Parent category</label>
 					<div class="col-sm-3">
 						<select name="parent_id" class="form-control">
 							<option value="0">Select</option>
@@ -26,21 +26,21 @@
 					</div>
 				</div>
 				
-				<div class="form-group">
-					<label class="control-label col-sm-3">Category name</label>
-					<div class="col-sm-9"><input type="text" name="category_name" class="form-control"></div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Category name</label>
+					<div class="col-sm-8"><input type="text" name="category_name" class="form-control"></div>
 				</div>
 				
-				<div class="form-group">
-					<label class="control-label col-sm-3">Category description</label>
-					<div class="col-sm-9"><input type="text" name="description" class="form-control"></div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Category description</label>
+					<div class="col-sm-8"><input type="text" name="description" class="form-control"></div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">Order</label>
-					<div class="col-sm-9"><input type="number" name="sort" class="form-control"></div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Order</label>
+					<div class="col-sm-8"><input type="number" name="sort" class="form-control"></div>
 				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-9">
+				<div class="form-group row">
+					<div class=" col-sm-10" style="text-align: right;">
 						<input type="submit" value="Save" class="btn btn-primary">
 						<input type="button" value="Cancel" class="btn btn-default" onclick="history.go(-1)">
 					</div>

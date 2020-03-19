@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=utf-8" %><%@ include file="/init.jsp" %><%
+<%@ page contentType="text/html; charset=utf-8" %><%@ include file="../init.jsp" %><%
 
-    if(userId != null){
+
         //Step1
         CategoryDao cat = new CategoryDao();
 
@@ -54,9 +54,6 @@
         
         p.print();
 
-    } else {
-        m.jsAlert("Need to login");
-        m.jsReplace("/admin/login.jsp", "window");
-    }
+
 
 %>

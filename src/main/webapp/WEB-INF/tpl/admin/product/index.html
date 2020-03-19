@@ -9,17 +9,18 @@
               </small>
           </h1>
   </div>
-	<div class="row" style="margin-bottom: 30px;">
+	<div class="row" style="margin-bottom: 20px;">
            <div class="col-6">
-	           	<form name="form1" method="get" class="form-inline">
-					<input type="text" name="s_keyword" class="form-control">
-					<input class="btn btn-success" type="submit" value="Search">
-				</form>
-				${form_script}
+			   <a href="create.jsp" class="btn btn-small btn-success">New</a>
+
            </div>
            
            <div class="col-6" style="text-align: right;">
-	      	   <a href="create.jsp" class="btn btn-small btn-success">+${pagetitle} add</a>
+			   <form name="form1" method="get" class="form-inline" style="float: right;">
+				   <input type="text" name="s_keyword" class="form-control">
+				   <input class="btn btn-success" type="submit" value="Search">
+			   </form>
+			   ${form_script}
 	       </div>
     </div>
   <div class="row">

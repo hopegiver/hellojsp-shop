@@ -36,7 +36,7 @@ if(m.isPost() && f.validate()) {
 		user.item("photo_url", attFile.getName());
 
 		if(!"".equals(info.s("photo_url"))) {
-			m.delFile(f.uploadDir + "/" + info.s("att_file_code"));
+			m.delFile(f.uploadDir + "/" + info.s("photo_url"));
 		}
 	}
 

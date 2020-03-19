@@ -1,101 +1,6 @@
 jQuery(function($) {
     //Select Categories Tree
-    var categoryData = [
-        {
-            id: 1,
-            name: 'For Sale',
-   
-            children: [
-                {
-                    id: 2,
-                    name: 'Appliances'
-                },                
-                { 
-                    id: 3,
-                    name: 'Arts & Crafts'
-                },
-                { 
-                    id: 4,
-                    name: 'Clothing'
-                },
-                { 
-                    id: 5,
-                    name: 'Electronics'
-                },
-                { 
-                    id: 6,
-                    name: 'Jewelry'
-                },
-                { 
-                    id: 7,
-                    name: 'Office & Business'
-                },
-                { 
-                    id: 8,
-                    name: 'Sports & Fitness'
-                }
-            ]
-        },
 
-
-        {
-            id: 10,
-            name: 'Vehicles',
-   
-            children: [
-                {
-                    id: 11,
-                    name: 'Cars',
-
-                    children: [
-                        {
-                            id: 12,
-                            name: 'Convertible'
-                        },                
-                        { 
-                            id: 13,
-                            name: 'Coupe'
-                        },
-                        { 
-                            id: 14,
-                            name: 'Hatchback'
-                        },
-                        { 
-                            id: 15,
-                            name: 'SUV'
-                        },
-                        { 
-                            id: 16,
-                            name: 'Sedan'
-                        },
-                        { 
-                            id: 17,
-                            name: 'Truck'
-                        }
-                    ]
-                },
-
-                { 
-                    id: 18,
-                    name: 'Bikes'
-                },
-                { 
-                    id: 19,
-                    name: 'Boats'
-                }
-            ]
-        },
-
-        {
-            id: 20,
-            name: 'Services'
-        },
-        {
-            id: 21,
-            name: 'Personals'
-        }
-        
-    ];
 
     
     var selectedIcon =
@@ -103,10 +8,8 @@ jQuery(function($) {
         <i class="w-2 fa fa-check text-white"></i>\
     </span>';
     
-    var deselectedIcon = 
-    '<span class="deselected-icon d-inline-block text-center border-1 bgc-white brc-secondary-m3 px-1px mx-1 text-70 pb-1px radius-2px">\
-        <i class="w-2 fa fa-times text-orange-l4"></i>\
-    </span>';
+    var deselectedIcon =
+    '';
 
     
     var categoryTree = $('#id-jqtree-categories');
@@ -142,6 +45,7 @@ jQuery(function($) {
         e.preventDefault();
 
         var selectedNode = e.node;
+        alert(selectedNode.id);
         if (selectedNode.id === undefined || selectedNode.children.length > 0) {
             return;
         }

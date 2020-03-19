@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=utf-8" %><%@ include file="/init.jsp" %><%
+<%@ page contentType="text/html; charset=utf-8" %><%@ include file="../init.jsp" %><%
 
-if(userId != null){
+
 //Step1
 	BannerDao banner = new BannerDao();
 	
@@ -46,9 +46,6 @@ if(userId != null){
 	p.setBody("admin/banner/create");
 	p.setVar("form_script", f.getScript());
 	p.print();
-} else {
-    m.jsAlert("Need to login");
-    m.jsReplace("/admin/login.jsp", "window");
-}
+
 
 %>
