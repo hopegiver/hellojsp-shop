@@ -1,11 +1,12 @@
-<form class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
+<form  class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
 
+	#if($id != 0){
 	<div class="form-group">
 		<label class="control-label col-sm-2">Parent Menu</label>
 		<div class="col-sm-4">
-			<select name="parent_id" class="form-control">
+			<select name="parent_id" class="form-control" required>
 				<option value="0">Select</option>
-				<!--#foreach($item in $main_menu)-->
+				<!--#foreach($item in $list)-->
 
 				<option value="${item.id}">${item.menu_name}</option>
 				<!--								#foreach($sub in $sub_menu)-->
@@ -18,16 +19,16 @@
 
 		</div>
 	</div>
-
+	#end
 	<div class="form-group">
 		<label class="control-label col-sm-2">Menu Name</label>
-		<div class="col-sm-4"><input type="text" name="menu_name" class="form-control"></div>
+		<div class="col-sm-4"><input type="text" name="menu_name" class="form-control" required></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2">Module</label>
 		<div class="col-sm-4">
-			<select name="module" class="form-control">
-				<option value="0">Select</option>
+			<select name="module" class="form-control" required>
+				<option value="">Select</option>
 				<option value="content">Content</option>
 				<option value="category">Product category</option>
 

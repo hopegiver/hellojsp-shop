@@ -45,7 +45,9 @@ jQuery(function($) {
         e.preventDefault();
 
         var selectedNode = e.node;
-        alert(selectedNode.id);
+        //alert(selectedNode.id);
+        window.location.href = "/admin/"+selectedNode.url+"/index.jsp?id="+selectedNode.id+"";
+        //location.href = '/admin/menu/index.jsp';
         if (selectedNode.id === undefined || selectedNode.children.length > 0) {
             return;
         }
