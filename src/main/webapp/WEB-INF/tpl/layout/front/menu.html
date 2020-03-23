@@ -19,10 +19,11 @@
 								#foreach($submenu in $sub_menu_list)
 								#if($submenu.parent_id == $menu.id)
 								<li>
-									#if($menu.module_id == 0)
-									<a href="${menu.module}.jsp">${submenu.menu_name}</a>
+									#if($submenu.module_id == 0)
+
+									<a href="${submenu.module}.jsp">${submenu.menu_name}</a>
 									#else
-									<a href="${menu.module}.jsp?id=${menu.module_id}">${submenu.menu_name}</a>
+									<a href="${submenu.module}.jsp?id=${submenu.module_id}">${submenu.menu_name}</a>
 									#end
 								</li>
 								#end

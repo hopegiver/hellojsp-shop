@@ -70,7 +70,7 @@
                     <label class="control-label col-sm-2">Module ID</label>
                     <div class="col-sm-4">
                         <select name="module_id1" class="form-control">
-                            <option value="">Select</option>
+                            <option value="0">Select</option>
                             #foreach($list in $content_list)
                             <option value="${list.id}">${list.name}</option>
                             #end
@@ -81,7 +81,7 @@
                     <label class="control-label col-sm-2">Module ID</label>
                     <div class="col-sm-4">
                         <select name="module_id" class="form-control">
-                            <option value="">Select</option>
+                            <option value="0">Select</option>
                             #foreach($cat in $cat_list)
                                 #if($cat.parent_id == 0)
                                 <option value="${cat.id}">${cat.category_name}</option>
@@ -177,32 +177,21 @@
     {
         var module = sel.value;
 
-        $.ajax({
-            type: "POST",
-            url: "/admin/menu/get_module_id.jsp?module=" + module + "",
-            data: "",
-            contentType: "application/json",
-            async: false,
-            success: function (data) {
-                console.log(data);
-                if(data == 1){
-                    $("#mod_content").show();
-                    $("#mod_category").hide();
-                    $("#mod_blog").hide();
-                }
-                if(data == 2){
-                    $("#mod_content").hide();
-                    $("#mod_category").show();
-                    $("#mod_blog").hide();
-                }
-                if(data == 3){
-                    $("#mod_content").hide();
-                    $("#mod_category").hide();
-                    $("#mod_blog").show();
-                }
-                //$("#response").html(data);
-            }
-        });
+        if(module == 1){
+            $("#mod_content").show();
+            $("#mod_category").hide();
+            $("#mod_blog").hide();
+        }
+        if(module == 2){
+            $("#mod_content").hide();
+            $("#mod_category").show();
+            $("#mod_blog").hide();
+        }
+        if(module == 3){
+            $("#mod_content").hide();
+            $("#mod_category").hide();
+            $("#mod_blog").show();
+        }
     }
     // $(document).ready(function () {
     //     $('#module').on('change', function() {
