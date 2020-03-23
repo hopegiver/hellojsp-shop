@@ -110,6 +110,7 @@
          String module = f.get("module");
 
     p.setVar("module", module);
+
         //    p.setDebug(out);
         p.setLayout("adminMain");
         p.setBody("admin/menu/index");

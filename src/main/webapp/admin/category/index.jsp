@@ -5,7 +5,6 @@
 
         MenuDao menu = new MenuDao();
 
-
         //Step2
         DataSet catInfo = category.find("status != -1 AND parent_id = 0", "*", "sort");
 
