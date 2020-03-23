@@ -1,84 +1,135 @@
- 
+
 <div class="page-content ">
-  <div class="page-header">
-          <h1 class="page-title text-primary-d2">
-              ${pagetitle} 
-               <small class="page-info text-secondary-d2">
-                  <i class="fa fa-angle-double-right text-80"></i>
-                  ${pageaction}
-              </small>
-          </h1>
-  </div>
-	<div class="row" style="margin-bottom: 30px;">
-           <div class="col-6">
-	           	
-				<a href="create.jsp" class="btn btn-small btn-success">New</a>
-           </div>
-           
-           <div class="col-6" style="text-align: right;">
-	      	   
-	       </div>
+    <div class="page-header">
+        <h1 class="page-title text-primary-d2">
+            ${pagetitle}
+            <small class="page-info text-secondary-d2">
+                <i class="fa fa-angle-double-right text-80"></i>
+                ${pageaction}
+            </small>
+        </h1>
     </div>
-  <div class="row">
-  	<div class="col-12">
-  		<table id="simple-table" class="table table-bordered table-bordered-x table-hover text-dark-m2">
-            <thead class="text-dark-m3 bgc-grey-l4">
-              <tr class="bgc-primary-m1 text-white">
-                  <th width="5%">ID</th>
-                  
-                  <th>Category name</th>
-                  <th>Description</th>
-                  <th>Order</th>
-                  <th width="15%">Manage</th>
-              </tr>
-            </thead>
-            <tbody>
-            <!--#foreach($item in $list)-->
-              <tr class="bgc-primary-l3">
-                  <td>${item.id}</td>
-                  
-                  <td> ${item.category_name}</td>
-                  <td>${item.description}</td>
-                  <td>${item.sort}</td>
-                  <td>
-                  	
-                    <a href="read.jsp?id=${item.id}" class="btn btn-sm btn-outline-success">View</a>
-                    <a href="update.jsp?id=${item.id}" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a href="delete.jsp?id=${item.id}" class="btn btn-sm btn-outline-danger">Delete</a>
-                  </td>
-              </tr>
-              #foreach($subitem in $sublist)
-                #if($subitem.parent_id == $item.id)
-              	<tr class="bgc-h-default-l3 d-style">
-                  <td>${subitem.id}</td>
-                  
-                  <td style="padding-left: 50px;"> -${subitem.category_name}</td>
-                  <td>${subitem.description}</td>
-                  <td>${subitem.sort}</td>
-                  <td>
-                  	
-                    <a href="read.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-success">View</a>
-                    <a href="update.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a href="delete.jsp?id=${subitem.id}" class="btn btn-sm btn-outline-danger">Delete</a>
-                  </td>
-              	</tr>
-                #end
-              #end
-              <!--#end-->
-              
-            </tbody>
-          </table>
-        
-  		
-  		${pagebar}
-  	</div>
-  </div>
+
+    <div class="row" style="margin-bottom: 30px;">
+        <div class="col-4">
+            <div class="card border-0">
+                <div class="card-header bgc-default-d2">
+                    <h3 class="card-title text-130 text-white" >
+                        Choose menu
+                    </h3>
+                    <!--                    <a href="create.jsp" class="btn btn-sm btn-success">Add main menu</a>-->
+                </div>
+                <div class="card-body bgc-white border-1 border-t-0 brc-default-m2">
+                    <div class="jqtree" id="id-jqtree-categories"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8" style="">
+            <form  class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
 
 
-  <hr class="border-double my-4 brc-secondary-l2" />
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Parent Menu</label>
+                    <div class="col-sm-4">
+                        <select name="parent_id" class="form-control" required>
+                            <option value="0">Select</option>
+                            <!--#foreach($item in $list)-->
+
+                            <option value="${item.id}">${item.category_name}</option>
+                            <!--								#foreach($sub in $sub_menu)-->
+                            <!--									#if($sub.parent_id == $item.id)-->
+                            <!--										<option value="${sub.id}" >&#45;&#45;${sub.menu_name}</option>-->
+                            <!--									#end-->
+                            <!--								#end-->
+                            <!--#end-->
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label ">Category name</label>
+                    <div class="col-sm-4"><input type="text" name="category_name" class="form-control"></div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label">Category description</label>
+                    <div class="col-sm-4"><input type="text" name="description" class="form-control"></div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label">Order</label>
+                    <div class="col-sm-4"><input type="text" name="sort" class="form-control"></div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Save" class="btn btn-primary">
+                        <input type="button" value="Cancel" class="btn btn-default" onclick="history.go(-1)">
+
+                        #if($id != 0)
+                        <button type="button" class="btn btn-danger my-1" data-toggle="modal" data-target="#exampleModal">
+                            Delete
+                        </button>
+                        #end
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Menu delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you want to delete Category?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                        <a href="/admin/category/index.jsp?id=${id}&del=1" class="btn btn-primary">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            ${form_script}
+
+        </div>
+    </div>
+
+
+
 
 
 </div>
+<script>
+    var categoryData = [
+        #foreach($item in $list)
+        {
+            id: ${item.id},
+            name: "${item.category_name}",
+            url: "category",
+            children: [
+                #foreach($subitem in $sublist)
+                #if($subitem.parent_id == $item.id)
+                {
+                    id: ${subitem.id},
+                    name: "${subitem.category_name}",
+                    url: "category",
+                },
+                #end
+                #end
+            ]
+        },
+        #end
+
+    ];
+</script>
+
 
   
         

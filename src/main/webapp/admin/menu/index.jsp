@@ -1,8 +1,14 @@
 <%@ page contentType="text/html; charset=utf-8" %><%@ include file="../init.jsp" %><%
 
     //Step1
+    CategoryDao category = new CategoryDao();
+    BlogDao blog = new BlogDao();
+    ContentDao content = new ContentDao();
     MenuDao menu = new MenuDao();
 
+        DataSet blog_list = blog.find("status != -1", "id,subject");
+        DataSet cat_list = category.find("status != -1", "id,parent_id,category_name");
+        DataSet content_list = content.find("status != -1", "id,name");
      //Step2
         DataSet menuInfo = menu.find("status != -1 AND parent_id = 0", "*", "sort");
 
@@ -43,8 +49,8 @@
 
                         menu.item("module", f.get("module"));
                         menu.item("menu_name", f.get("menu_name"));
-                        menu.item("module_id", f.getInt("module_id", 0));
-                        menu.item("parent_id", f.getInt("parent_id", 0));
+                        menu.item("module_id", f.get("module_id"));
+                        menu.item("parent_id", f.get("parent_id"));
 
                         //blog.setDebug(out);
                         if(!menu.update("id = " + id)) {
@@ -101,6 +107,9 @@
         String pagetitle = "Menu";
 
         String pageaction = "";
+         String module = f.get("module");
+
+    p.setVar("module", module);
         //    p.setDebug(out);
         p.setLayout("adminMain");
         p.setBody("admin/menu/index");
@@ -109,6 +118,9 @@
         p.setVar("sublist", subMenu);
         p.setVar("info", info);
         p.setVar("parent", parent);
+        p.setVar("blog_list", blog_list);
+        p.setVar("cat_list", cat_list);
+        p.setVar("content_list", content_list);
         p.setVar("form_script", f.getScript());
         p.setVar("pagetitle", pagetitle);
         p.setVar("pageaction", pageaction);

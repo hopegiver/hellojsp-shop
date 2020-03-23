@@ -55,28 +55,66 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Module</label>
                     <div class="col-sm-4">
-                        <select name="module" class="form-control" required>
+                        <select id="module" onchange="getval(this);" name="module" class="form-control" required>
                             <option value="">Select</option>
-                            <option value="content">Content</option>
-                            <option value="category">Product category</option>
+                            <option value="1">Content</option>
+                            <option value="2">Product category</option>
 
-                            <option value="blog">Blog</option>
+                            <option value="3">Blog</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+
+
+                <div class="form-group" id="mod_content" #if($info.module == 1) style="" #else if($id == 0) style="display: none;" #end>
                     <label class="control-label col-sm-2">Module ID</label>
-                    <div class="col-sm-4"><input type="text" name="module_id" class="form-control" value="0"></div>
+                    <div class="col-sm-4">
+                        <select name="module_id1" class="form-control">
+                            <option value="">Select</option>
+                            #foreach($list in $content_list)
+                            <option value="${list.id}">${list.name}</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="mod_category" #if($info.module == 2) style="" #else if($id == 0) style="display: none;" #end >
+                    <label class="control-label col-sm-2">Module ID</label>
+                    <div class="col-sm-4">
+                        <select name="module_id" class="form-control">
+                            <option value="">Select</option>
+                            #foreach($cat in $cat_list)
+                                #if($cat.parent_id == 0)
+                                <option value="${cat.id}">${cat.category_name}</option>
+                                    #foreach($child in $cat_list)
+                                        #if($child.parent_id == $cat.id )
+                                        <option value="${child.id}">--${child.category_name}</option>
+                                        #end
+                                    #end
+                                #end
+                            #end
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="mod_blog" #if($info.module == 3) style="" #else if($id == 0) style="display: none;" #end >
+                    <label class="control-label col-sm-2">Module ID</label>
+                    <div class="col-sm-4">
+                        <select name="module_id2" class="form-control">
+                            <option value="0">Select</option>
+                            #foreach($list in $blog_list)
+                            <option value="${list.id}">${list.subject}</option>
+                            #end
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <input type="submit" value="Save" class="btn btn-primary">
                         <input type="button" value="Cancel" class="btn btn-default" onclick="history.go(-1)">
-
+                        #if($id != 0)
                         <button type="button" class="btn btn-danger my-1" data-toggle="modal" data-target="#exampleModal">
                             Delete
                         </button>
-
+                        #end
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog " role="document">
                                 <div class="modal-content">
@@ -105,6 +143,7 @@
         </div>
     </div>
 
+    ${module}
 
 
 
@@ -132,5 +171,56 @@
 
     ];
     </script>
+
+<script>
+    function getval(sel)
+    {
+        var module = sel.value;
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/menu/get_module_id.jsp?module=" + module + "",
+            data: "",
+            contentType: "application/json",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                if(data == 1){
+                    $("#mod_content").show();
+                    $("#mod_category").hide();
+                    $("#mod_blog").hide();
+                }
+                if(data == 2){
+                    $("#mod_content").hide();
+                    $("#mod_category").show();
+                    $("#mod_blog").hide();
+                }
+                if(data == 3){
+                    $("#mod_content").hide();
+                    $("#mod_category").hide();
+                    $("#mod_blog").show();
+                }
+                //$("#response").html(data);
+            }
+        });
+    }
+    // $(document).ready(function () {
+    //     $('#module').on('change', function() {
+    //         var module = $("#module").val();
+    //         alert( this.value );
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/admin/menu/get_module_id.jsp",
+    //             data: "{'module':'" + module + "''}",
+    //             contentType: "application/json",
+    //             async: false,
+    //             success: function (data) {
+    //                 console.log(data.d);
+    //                 $("#response").html(data);
+    //             }
+    //         });
+    //     });
+    // });
+</script>
   
         
