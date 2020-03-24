@@ -1,0 +1,45 @@
+<main>
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-light p-t-80 p-b-120 fs-14 link-color-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="m-b-30 fs-40 fw-600">${content_one.name}</h2>
+                    <ul class="list-inline">
+                        <li><a href="/">Home</a></li>
+                        <li>-</li>
+                        <li><a href="#!">${content_one.name}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+    <!-- Blog Single content Start -->
+    <section class="blog-single-wrapper p-t-30 p-b-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blog-content">
+
+                        <div class="entry-header ">
+                            <h2 class="fs-36 m-t-30 m-b-30">${content_one.name}</h2>
+                            #if($content_one.photo_url != "")
+                            <img src="/data/files/${content_one.photo_url}" alt="Product Image">
+                            #end
+                        </div>
+
+                        <div class="entry-content lh-27 m-t-30">
+                            ${content_one.content}
+                        </div>
+                        <div class="divider m-t-45 m-b-35"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Blog  End -->
+</main>

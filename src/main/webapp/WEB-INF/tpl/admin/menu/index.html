@@ -2,7 +2,7 @@
 <div class="page-content ">
   <div class="page-header">
           <h1 class="page-title text-primary-d2">
-              ${pagetitle} 
+              ${pagetitle}
                <small class="page-info text-secondary-d2">
                   <i class="fa fa-angle-double-right text-80"></i>
                   ${pageaction}
@@ -30,6 +30,7 @@
 
 
                 <div class="form-group">
+
                     <label class="control-label col-sm-2">Parent Menu</label>
                     <div class="col-sm-4">
                         <select name="parent_id" class="form-control" required>
@@ -55,7 +56,8 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Module</label>
                     <div class="col-sm-4">
-                        <select id="module" onchange="getval(this);" name="module" class="form-control" required>
+                        <input type="hidden" name="current_id" id="current_id" value="">
+                        <select id="module" onchange="getval(this);"  name="module" class="form-control" required>
                             <option value="">Select</option>
                             <option value="1">Content</option>
                             <option value="2">Product category</option>
@@ -66,46 +68,17 @@
                 </div>
 
 
-                <div class="form-group" id="mod_content" #if($info.module == 1) style="" #else if($id == 0) style="display: none;" #end>
+                <div class="form-group" id="mod_content" >
                     <label class="control-label col-sm-2">Module ID</label>
                     <div class="col-sm-4">
-                        <select name="module_id1" class="form-control">
-                            <option value="0">Select</option>
-                            #foreach($list in $content_list)
-                            <option value="${list.id}">${list.name}</option>
-                            #end
+                        <input type="hidden" name="module_id_hide" id="module_id_hide" value="">
+                        <select id="module_id" name="module_id" class="form-control">
+
                         </select>
                     </div>
                 </div>
-                <div class="form-group" id="mod_category" #if($info.module == 2) style="" #else if($id == 0) style="display: none;" #end >
-                    <label class="control-label col-sm-2">Module ID</label>
-                    <div class="col-sm-4">
-                        <select name="module_id" class="form-control">
-                            <option value="0">Select</option>
-                            #foreach($cat in $cat_list)
-                                #if($cat.parent_id == 0)
-                                <option value="${cat.id}">${cat.category_name}</option>
-                                    #foreach($child in $cat_list)
-                                        #if($child.parent_id == $cat.id )
-                                        <option value="${child.id}">--${child.category_name}</option>
-                                        #end
-                                    #end
-                                #end
-                            #end
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group" id="mod_blog" #if($info.module == 3) style="" #else if($id == 0) style="display: none;" #end >
-                    <label class="control-label col-sm-2">Module ID</label>
-                    <div class="col-sm-4">
-                        <select name="module_id2" class="form-control">
-                            <option value="0">Select</option>
-                            #foreach($list in $blog_list)
-                            <option value="${list.id}">${list.subject}</option>
-                            #end
-                        </select>
-                    </div>
-                </div>
+
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <input type="submit" value="Save" class="btn btn-primary">
@@ -148,6 +121,33 @@
 
 
 </div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var module_id = $("#module_id_hide").val();
+        //alert(module_id);
+        console.log(module_id);
+        var module = $("#current_id").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/menu/get_module_id.jsp?module=" + module + "&module_id=" + module_id + "",
+            data: "",
+            contentType: "html",
+            async: false,
+            success: function (data) {
+                //console.log(contact.id);
+
+                console.log(data);
+                $("#module_id").html(data);
+
+            }
+        });
+
+    });
+</script>
 <script>
     var categoryData = [
         #foreach($item in $list)
@@ -173,43 +173,26 @@
     </script>
 
 <script>
+
+
     function getval(sel)
     {
         var module = sel.value;
 
-        if(module == 1){
-            $("#mod_content").show();
-            $("#mod_category").hide();
-            $("#mod_blog").hide();
-        }
-        if(module == 2){
-            $("#mod_content").hide();
-            $("#mod_category").show();
-            $("#mod_blog").hide();
-        }
-        if(module == 3){
-            $("#mod_content").hide();
-            $("#mod_category").hide();
-            $("#mod_blog").show();
-        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/menu/get_module_id.jsp?module=" + module + "",
+            data: "",
+            contentType: "html",
+            async: false,
+            success: function (data) {
+                //console.log(contact.id);
+
+                console.log(data);
+                $("#module_id").html(data);
+
+            }
+        });
     }
-    // $(document).ready(function () {
-    //     $('#module').on('change', function() {
-    //         var module = $("#module").val();
-    //         alert( this.value );
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "/admin/menu/get_module_id.jsp",
-    //             data: "{'module':'" + module + "''}",
-    //             contentType: "application/json",
-    //             async: false,
-    //             success: function (data) {
-    //                 console.log(data.d);
-    //                 $("#response").html(data);
-    //             }
-    //         });
-    //     });
-    // });
 </script>
-  
-        
+

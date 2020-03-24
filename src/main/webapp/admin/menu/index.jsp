@@ -6,9 +6,6 @@
     ContentDao content = new ContentDao();
     MenuDao menu = new MenuDao();
 
-        DataSet blog_list = blog.find("status != -1", "id,subject");
-        DataSet cat_list = category.find("status != -1", "id,parent_id,category_name");
-        DataSet content_list = content.find("status != -1", "id,name");
      //Step2
         DataSet menuInfo = menu.find("status != -1 AND parent_id = 0", "*", "sort");
 
@@ -39,26 +36,29 @@
                 if(!info.next()) { m.jsError("No Data"); return; }
 
                 f.addElement("module", info.s("module"), "title:'module'");
+                f.addElement("current_id", info.s("module"), "title:'current_id'");
                 f.addElement("menu_name", info.s("menu_name"), "title:'menu_name', required:true");
                 f.addElement("module_id", info.s("module_id"), "title:'module_id'");
+                f.addElement("module_id_hide", info.s("module_id"), "title:'module_id'");
                 f.addElement("parent_id", info.s("parent_id"), "title:'parent_id'");
 
                 f.addElement("reg_date", info.s("reg_date"), "title:'reg_date', editable:false");
 
                 if(m.isPost() && f.validate()) {
 
-                        menu.item("module", f.get("module"));
-                        menu.item("menu_name", f.get("menu_name"));
-                        menu.item("module_id", f.get("module_id"));
-                        menu.item("parent_id", f.get("parent_id"));
+                            String module_id = f.get("module_id");
+                            menu.item("module", f.get("module"));
+                            menu.item("menu_name", f.get("menu_name"));
+                            menu.item("module_id", module_id);
+                            menu.item("parent_id", f.get("parent_id"));
 
-                        //blog.setDebug(out);
+
                         if(!menu.update("id = " + id)) {
-                                m.jsAlert("Error occurred(update)");
-                                return;
-                        }
+                                    m.jsAlert("Error occurred(update)");
+                                    return;
+                            }
                         m.redirect("index.jsp");
-                        return;
+                            return;
                 }
                 if(m.isPost() && f.validate()) {
                         menu.item("status", -1);
@@ -119,9 +119,7 @@
         p.setVar("sublist", subMenu);
         p.setVar("info", info);
         p.setVar("parent", parent);
-        p.setVar("blog_list", blog_list);
-        p.setVar("cat_list", cat_list);
-        p.setVar("content_list", content_list);
+
         p.setVar("form_script", f.getScript());
         p.setVar("pagetitle", pagetitle);
         p.setVar("pageaction", pageaction);

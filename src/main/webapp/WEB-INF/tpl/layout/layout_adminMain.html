@@ -18,10 +18,10 @@
     
     <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/basictable/basictable.css">
     <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/jqtree/jqtree.css">
-    
+    <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/summernote/dist/summernote-lite.css">
     <link rel="stylesheet" type="text/css" href="/assets/admin/dist/css/ace-font.css">
 
-    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/assets/admin/dist/css/ace.css">
     <link rel="stylesheet" type="text/css" href="/assets/admin/application/views/default/pages/partials/elements/@page-style.css">  </head>
      
@@ -38,7 +38,24 @@
           #parse( "layout/admin/footer.html" )
         </div><!-- /main -->
       </div><!-- /.main-container -->
+<script>
 
+
+    function sendFile(file, el) {
+        var formdata = new FormData();
+        formdata.append(file.name, file);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/summernote/ImageUpload/');
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.response.replace(new RegExp('"', 'g'), '');
+                $(el).summernote('insertImage', response, file.name);
+            }
+        }
+        return false;
+    }
+</script>
 
       <script type="text/javascript" src="/assets/admin/node_modules/jquery/dist/jquery.js"></script>
       <script type="text/javascript" src="/assets/admin/node_modules/popper.js/dist/umd/popper.js"></script>
@@ -49,7 +66,7 @@
 
       <script type="text/javascript" src="/assets/admin/node_modules/chart.js/dist/Chart.js"></script>
       <script type="text/javascript" src="/assets/admin/dist/js/ace.js"></script>
-
+        <script type="text/javascript" src="/assets/admin/node_modules/summernote/dist/summernote-lite.js"></script>
         <script type="text/javascript" src="/assets/admin/node_modules/bootbox/bootbox.all.js"></script>
         <script type="text/javascript" src="/assets/admin/node_modules/sweetalert2/dist/sweetalert2.all.js"></script>
         <script type="text/javascript" src="/assets/admin/node_modules/interactjs/dist/interact.js"></script>
@@ -59,7 +76,7 @@
       <script type="text/javascript" src="/assets/admin/application/views/default/pages/partials/dashboard-2/@page-script.js"></script>
         <script type="text/javascript" src="/assets/admin/application/views/default/pages/partials/treeview/@page-script.js"></script>
         <script type="text/javascript" src="/assets/admin/application/views/default/pages/partials/elements/@page-script.js"></script>
-
+        <script type="text/javascript" src="/assets/admin/application/views/default/pages/partials/form-editor/@page-script.js"></script>
    </div>
 
   </body>

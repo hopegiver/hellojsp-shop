@@ -1,0 +1,27 @@
+#if($type == "content")
+<option value="0">Select</option>
+#foreach($list in $content_list)
+<option value='${list.id}' #if($module_id == $list.id) selected #end >${list.name}</option>
+#end
+#end
+
+#if($type == "category")
+<option value="0">Select</option>
+#foreach($cat in $content_list)
+#if($cat.parent_id == 0)
+<option value="${cat.id}" #if($module_id == $cat.id) selected #end>${cat.category_name}</option>
+#foreach($child in $content_list)
+#if($child.parent_id == $cat.id )
+<option value="${child.id}" #if($module_id == $child.id) selected #end>--${child.category_name}</option>
+#end
+#end
+#end
+#end
+#end
+
+#if($type == "blog")
+<option value="0">Select</option>
+#foreach($list in $content_list)
+<option value="${list.id}" #if($module_id == $list.id) selected #end >${list.subject}</option>
+#end
+#end

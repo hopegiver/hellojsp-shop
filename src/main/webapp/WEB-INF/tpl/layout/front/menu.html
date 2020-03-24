@@ -10,9 +10,10 @@
 						#foreach($menu in $menu_list)
 							<li>
 							#if($menu.module_id == 0)
-							<a href="${menu.module}.jsp">${menu.menu_name}</a>
+
+							<a href="#if($menu.module == 1)content#elseif($menu.module == 2)category#elseif($menu.module == 3)blog#end.jsp">${menu.menu_name}</a>
 							#else
-							<a href="${menu.module}.jsp?id=${menu.module_id}">${menu.menu_name}</a>
+							<a href="#if($menu.module == 1)content#elseif($menu.module == 2)category#elseif($menu.module == 3)blog#end.jsp?id=${menu.module_id}">${menu.menu_name}</a>
 							#end
 
 							<ul class="sub-menu">
@@ -21,9 +22,9 @@
 								<li>
 									#if($submenu.module_id == 0)
 
-									<a href="${submenu.module}.jsp">${submenu.menu_name}</a>
+									<a href="#if($submenu.module == 1)content#elseif($submenu.module == 2)category#elseif($submenu.module == 3)blog#end.jsp">${submenu.menu_name}</a>
 									#else
-									<a href="${submenu.module}.jsp?id=${submenu.module_id}">${submenu.menu_name}</a>
+									<a href="#if($submenu.module == 1)content#elseif($submenu.module == 2)category#elseif($submenu.module == 3)blog#end.jsp?id=${submenu.module_id}">${submenu.menu_name}</a>
 									#end
 								</li>
 								#end

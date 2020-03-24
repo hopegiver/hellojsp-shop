@@ -1,0 +1,56 @@
+<div class="page-content container">
+  <div class="page-header">
+      <h1 class="page-title text-primary-d2">
+          Banner
+           <small class="page-info text-secondary-d2">
+              <i class="fa fa-angle-double-right text-80"></i>
+              view
+          </small>
+      </h1>
+  </div>
+	
+  <div class="row">
+  	<div class="col-9">
+  	
+  		
+       	<form class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
+         
+		<div class="form-group row">
+			<label class=" col-md-3">Text 1:</label>
+			<div class="col-md-9">${info.text1}</div>
+		</div>
+		<div class="form-group row">
+			<label class=" col-md-3">Text 2:</label>
+			<div class="col-md-9">${info.text2}</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="control-label col-sm-3">URL:</label>
+			<div class="col-sm-9">${info.url}</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="control-label col-sm-3">Photo:</label>
+			<div class="col-sm-9"><img src="/data/files/${info.photo_url}" alt="image" width="150" ></div>
+		</div>
+		<div class="form-group row">
+			<label class="control-label col-sm-3">Date:</label>
+			<div class="col-sm-9">${info.reg_date}</div>
+		</div>
+	</form>
+	
+	
+          <br>
+          
+          <input type="button" value="Back" class="btn btn-default" onclick="history.go(-1)">
+				<a href="update.jsp?id=${info.id}" class="btn btn-primary">Edit</a>
+				<a href="delete.jsp?id=${info.id}" class="btn btn-danger">Delete</a>
+			
+  	</div>
+  </div>
+
+
+  <hr class="border-double my-4 brc-secondary-l2" />
+
+
+</div>
