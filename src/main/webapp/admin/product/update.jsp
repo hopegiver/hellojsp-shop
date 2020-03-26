@@ -4,7 +4,7 @@ if(userId != null){
 	//Step1
 	ProductDao product = new ProductDao();
 	CategoryDao category = new CategoryDao();
-	CategoryModuleDao categoryModule = new CategoryModuleDao();
+	ProductvariantDao productvariant = new ProductvariantDao();
 	
 	//Step2
 	int id = m.reqInt("id");
@@ -24,6 +24,10 @@ if(userId != null){
 	f.addElement("summary", info.s("summary"), "title:'summary', required:true");
 	f.addElement("description", info.s("description"), "title:'description', required:true");
 	f.addElement("photo_url", info.s("photo_url"), "title:'photo_url'");
+
+	String[] color_split = info.s("colors").split(",");
+	String[] size_split = info.s("sizes").split(",");
+	 //Boolean utga =  m.inArray("Black", color_split);
 	//Step5
 	if(m.isPost() && f.validate()) {
 	
@@ -33,7 +37,8 @@ if(userId != null){
 		product.item("price", f.get("price"));
 		product.item("summary", f.get("summary"));
 		product.item("description", f.get("description"));
-		
+		product.item("colors", f.get("colors"));
+		product.item("sizes", f.get("sizes"));
 		File attFile = f.saveFile("photo_url");
 		if(attFile != null) {
 			product.item("photo_url", attFile.getName());
@@ -44,7 +49,19 @@ if(userId != null){
 			m.jsAlert("Error occurred(update)");
 			return;
 		}
-		
+		productvariant.delete("product_id = " + id);
+		int variantCount =  f.getInt("variant_count");
+		for(int i = 1; i <= variantCount; i+=1){
+
+			if(f.getInt("variant"+ i) == 1) {
+				productvariant.item("product_id", id);
+				productvariant.item("color", f.get("product_color" + i));
+				productvariant.item("size", f.get("product_size" + i));
+				productvariant.item("price", f.get("product_price" + i));
+				int pvid = productvariant.insertWithId();
+			}
+
+		}
 	
 		m.redirect("index.jsp");
 		return;
@@ -69,11 +86,16 @@ if(userId != null){
 			);
 	
 	//Step6
+
+
 	String pagetitle = "Product"; 
 	String pageaction = "update"; 
 	p.setVar("pagetitle", pagetitle);
 	p.setVar("pageaction", pageaction);
 	p.setVar("userId", userId);
+
+	p.setVar("colors", color_split);
+	p.setVar("sizes", size_split);
 	p.setLayout("adminMain");
 	p.setBody("admin/product/update");
 	p.setVar("list", list);

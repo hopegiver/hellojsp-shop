@@ -794,24 +794,38 @@ button.swal-button.swal-button--confirm {
     border-color: transparent;
 }
 
+.woo-widget.woo-color-filter .white .checkmark {
+    background: #ffffff;
+    border-color: #ddd;
+}
+
 .woo-widget.woo-color-filter .black .checkmark {
     background: #000000;
+    border-color: #ddd;
 }
 
 .woo-widget.woo-color-filter .red .checkmark {
     background: #F62459;
+    border-color: #ddd;
 }
 
 .woo-widget.woo-color-filter .blue .checkmark {
     background: #25B5FF;
+    border-color: #ddd;
+}
+.woo-widget.woo-color-filter .green .checkmark {
+    background: green;
+    border-color: #ddd;
 }
 
 .woo-widget.woo-color-filter .orange .checkmark {
     background: #FF9140;
+    border-color: #ddd;
 }
 
 .woo-widget.woo-color-filter .spacegrey .checkmark {
     background: #B8BFC4;
+    border-color: #ddd;
 }
 
 .woo-widget.woo-color-filter .checkmark:after {
@@ -819,7 +833,8 @@ button.swal-button.swal-button--confirm {
 }
 
 .woo-widget.woo-color-filter label input[type=radio]:checked ~ .checkmark, .woo-widget.woo-color-filter label:hover input[type=radio] ~ .checkmark {
-    border-color: transparent;
+    border-color: #ddd;
+
 }
 /* ================ Shoping Cart ================== */
 table.table-shopping-cart {

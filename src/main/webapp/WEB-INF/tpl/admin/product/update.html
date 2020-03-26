@@ -14,7 +14,7 @@
   	<div class="col-9">
   		<form name="form1" method="post" class="form-horizontal" enctype="multipart/form-data">
 			<div class="form-group row">
-
+				<input type="hidden" name="" id="pro_id" value="${info.id}">
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Category</label>
 				<div class="col-sm-3">
 
@@ -46,7 +46,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product price</label>
 				<div class="col-sm-8">
-				<input name="price" class="form-control" data-inputmask="'alias': 'currency'" />
+				<input type="text" id="price" name="price" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group row">
@@ -61,7 +61,7 @@
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product description</label>
 				<div class="col-sm-8">
 
-					<textarea name="description" class="form-control" rows="5"></textarea>
+					<textarea id="summernote" name="description" class="form-control" rows="5"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -81,6 +81,156 @@
 				<div class="col-sm-8"><input type="file" name="photo_url" class="form-control"></div>
 			</div>
 			<div class="form-group row">
+				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product color</label>
+				<div class="col-sm-8" style="padding-top: 10px;">
+					<div class="row" >
+
+						<input type="hidden" name="colors" id="colors" value="">
+						<label class=" col-md-2 " style="">
+							<input type="checkbox" onclick="getcolor();" name="color" class=" " value="White" #foreach($col in $colors) #if($col == 'White') checked #end #end />
+							White
+						</label>
+						<label class="col-md-2 text-dark-d2" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-dark "  name="color" value="Black" #foreach($col in $colors) #if($col == 'Black') checked #end #end />
+							Black
+						</label>
+						<label class="col-md-2 text-red" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-red-d1 " name="color"  value="Red" #foreach($col in $colors) #if($col == 'Red') checked #end #end />
+							Red
+						</label>
+						<label class="col-md-2 text-blue-d2" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-blue-d1 " name="color"  value="Blue" #foreach($col in $colors) #if($col == 'Blue') checked #end #end />
+							Blue
+						</label>
+						<label class="col-md-2 btn-text-green" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-green-d2 " name="color"  value="Green" #foreach($col in $colors) #if($col == 'Green') checked #end #end  />
+							Green
+						</label>
+						<label class="col-md-2 text-orange-d2" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-orange " name="color"  value="Orange" #foreach($col in $colors) #if($col == 'Orange') checked #end #end />
+							Orange
+						</label>
+						<label class="col-md-2 text-yellow-d1" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-yellow " name="color"  value="Yellow" #foreach($col in $colors) #if($col == 'Yellow') checked #end #end />
+							Yellow
+						</label>
+						<label class="col-md-2 text-purple-d2" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-purple " name="color"  value="Purple" #foreach($col in $colors) #if($col == 'Purple') checked #end #end />
+							Purple
+						</label>
+						<label class="col-md-2 text-brown" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-brown " name="color"  value="Brown"  #foreach($col in $colors) #if($col == 'Brown') checked #end #end />
+							Brown
+						</label>
+						<label class="col-md-2 text-grey" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-grey" name="color"  value="Grey" #foreach($col in $colors) #if($col == 'Grey') checked #end #end />
+							Grey
+						</label>
+						<label class="col-md-2 text-pink" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-light-pink " name="color"  value="Pink" #foreach($col in $colors) #if($col == 'Pink') checked #end #end />
+							Pink
+						</label>
+						<label class="col-md-2 text-grey" style="">
+							<input type="checkbox" onclick="getcolor();"  class="bgc-grey" name="color"  value="Other" #foreach($col in $colors) #if($col == 'Other') checked #end #end />
+							Other
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label text-sm-right pr-0">Clothing size</label>
+				<div class="col-sm-8" style="padding-top: 10px;">
+					<div class="row" >
+						<input type="hidden" name="sizes" id="sizes" value="">
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="S" #foreach($col in $sizes) #if($col == 'S') checked #end #end />
+							S
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="M" #foreach($col in $sizes) #if($col == 'M') checked #end #end  />
+							M
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="L" #foreach($col in $sizes) #if($col == 'L') checked #end #end  />
+							L
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="XL" #foreach($col in $sizes) #if($col == 'XL') checked #end #end  />
+							XL
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="XXL" #foreach($col in $sizes) #if($col == 'XXL') checked #end #end  />
+							XXL
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="XXXL" #foreach($col in $sizes) #if($col == 'XXXL') checked #end #end  />
+							XXXL
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label text-sm-right pr-0">Shoes size</label>
+				<div class="col-sm-8" style="padding-top: 10px;">
+					<div class="row" >
+
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="35" #foreach($siz in $sizes) #if($siz == '35') checked #end #end />
+							35
+						</label>
+
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="36" #foreach($siz in $sizes) #if($siz == '36') checked #end #end  />
+							36
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="37" #foreach($siz in $sizes) #if($siz == '37') checked #end #end  />
+							37
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="38" #foreach($siz in $sizes) #if($siz == '38') checked #end #end  />
+							38
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="39" #foreach($siz in $sizes) #if($siz == '39') checked #end #end  />
+							39
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="40" #foreach($siz in $sizes) #if($siz == '40') checked #end #end  />
+							40
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="41" #foreach($siz in $sizes) #if($siz == '41') checked #end #end  />
+							41
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="42" #foreach($siz in $sizes) #if($siz == '42') checked #end #end  />
+							42
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="43" #foreach($siz in $sizes) #if($siz == '43') checked #end #end  />
+							43
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="44" #foreach($siz in $sizes) #if($siz == '44') checked #end #end  />
+							44
+						</label>
+						<label class="col-md-2" style="">
+							<input type="checkbox" onclick="getcolor();" class=" " name="size" value="45" #foreach($siz in $sizes) #if($siz == '45') checked #end #end  />
+							45
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product variant</label>
+				<div class="col-sm-8" style="padding-top: 10px;">
+					<div class="" id="variant" >
+
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
 				<div class="col-sm-10" style="text-align: right;">
 					<input type="submit" value="Save" class="btn btn-primary">
 					<input type="button" value="Cancel" class="btn btn-default" onclick="history.go(-1)">
@@ -96,3 +246,99 @@
 
 
 </div>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		var colors = [];
+		$('input[name=color]:checked').map(function() {
+			colors.push($(this).val());
+		});
+		var size = [];
+		$('input[name=size]:checked').map(function() {
+			size.push($(this).val());
+		});
+
+
+		$('#colors').val(colors);
+		$('#sizes').val(size);
+		var price = $('#price').val();
+
+		var pro_id = $('#pro_id').val();
+		//console.log(size);
+		$.ajax({
+			type: "POST",
+			url: "/admin/product/get_product_variant.jsp?colors=" + colors + "&size=" + size + "&price=" + price + "&pro_id=" + pro_id + "",
+			data: "",
+			contentType: "html",
+			async: false,
+			success: function (data) {
+				//console.log(contact.id);
+
+				//console.log(data);
+				$("#variant").html(data);
+
+			}
+		});
+
+	});
+</script>
+
+<script>
+
+	function getcolor(sel)
+	{
+
+		var colors = [];
+		$('input[name=color]:checked').map(function() {
+			colors.push($(this).val());
+		});
+		var size = [];
+		$('input[name=size]:checked').map(function() {
+			size.push($(this).val());
+		});
+
+		$('#colors').val(colors);
+		$('#sizes').val(size);
+		var price = $('#price').val();
+
+		var pro_id = $('#pro_id').val();
+		//console.log(size);
+		$.ajax({
+			type: "POST",
+			url: "/admin/product/get_product_variant.jsp?colors=" + colors + "&size=" + size + "&price=" + price + "&pro_id=" + pro_id + "",
+			data: "",
+			contentType: "html",
+			async: false,
+			success: function (data) {
+				//console.log(contact.id);
+
+				//console.log(data);
+				$("#variant").html(data);
+
+			}
+		});
+	}
+</script>
+<script>
+
+
+	function getval(sel)
+	{
+		var cat = sel.value;
+		console.log(cat);
+		$.ajax({
+			type: "POST",
+			url: "/admin/product/get_sub_category.jsp?cat=" + cat + "",
+			data: "",
+			contentType: "html",
+			async: false,
+			success: function (data) {
+				//console.log(contact.id);
+
+				console.log(data);
+				$("#sub_category_id").html(data);
+
+			}
+		});
+	}
+</script>

@@ -12,15 +12,15 @@
   </div>
 	
   <div class="row">
-  	<div class="col-9">
-  		<form class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
+  	<div class="col-md-10">
+  		<form  class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
 
 				<div class="form-group row">
 
 					<label class="col-sm-2 col-form-label text-sm-right pr-0">Category</label>
 					<div class="col-sm-3">
 
-						<select name="category_id" class="form-control">
+						<select name="category_id" onchange="getval(this);" class="form-control">
 							<option value="">Select</option>
 							<!--#foreach($item in $list)-->
 							<option value="${item.id}">${item.category_name}</option>
@@ -32,11 +32,9 @@
 					<label class="col-sm-2 col-form-label text-sm-right pr-0">Sub category</label>
 					<div class="col-sm-3 ">
 
-						<select name="sub_category_id" class="form-control">
+						<select name="sub_category_id" id="sub_category_id" class="form-control">
 							<option value="">Select</option>
-							#foreach($sub in $sublist)
-							<option value="${sub.id}">${sub.parent_name} > ${sub.category_name} </option>
-							#end
+
 						</select>
 						
 					</div>
@@ -54,7 +52,7 @@
 					<label class="col-sm-2 col-form-label text-sm-right pr-0">Product price</label>
 					<div class="col-sm-8">
 
-					<input name="price" class="form-control" data-inputmask="'alias': 'currency'" />
+						<input type="number" id="price" name="price" class="form-control"  />
 					</div>
 				</div>
 				<div class="form-group row">
@@ -69,7 +67,7 @@
 					<label class="col-sm-2 col-form-label text-sm-right pr-0">Product description</label>
 					<div class="col-sm-8">
 
-						<textarea name="description" class="form-control" rows="5"></textarea>
+						<textarea id="summernote" name="description" class="form-control" rows="5"></textarea>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -77,6 +75,156 @@
 					<div class="col-sm-8">
 
 						<input type="file" name="photo_url" class="form-control">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Product color</label>
+					<div class="col-sm-8" style="padding-top: 10px;">
+						<div class="row" >
+							<input type="hidden" name="colors" id="colors" value="">
+							<label class=" col-md-2 " style="">
+								<input type="checkbox" onclick="getcolor();" name="color" class=" " value="White" />
+								White
+							</label>
+							<label class="col-md-2 text-dark-d2" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-dark "  name="color" value="Black" />
+								Black
+							</label>
+							<label class="col-md-2 text-red" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-red-d1 " name="color"  value="Red" />
+								Red
+							</label>
+							<label class="col-md-2 text-blue-d2" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-blue-d1 " name="color"  value="Blue" />
+								Blue
+							</label>
+							<label class="col-md-2 btn-text-green" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-green-d2 " name="color"  value="Green" />
+								Green
+							</label>
+							<label class="col-md-2 text-orange-d2" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-orange " name="color"  value="Orange" />
+								Orange
+							</label>
+							<label class="col-md-2 text-yellow-d1" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-yellow " name="color"  value="Yellow" />
+								Yellow
+							</label>
+							<label class="col-md-2 text-purple-d2" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-purple " name="color"  value="Purple"  />
+								Purple
+							</label>
+							<label class="col-md-2 text-brown" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-brown " name="color"  value="Brown"   />
+								Brown
+							</label>
+							<label class="col-md-2 text-cyan-d2" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-cyan " name="color"  value="Cyan"  />
+								Cyan
+							</label>
+							<label class="col-md-2 text-pink" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-light-pink " name="color"  value="Pink" />
+								Pink
+							</label>
+							<label class="col-md-2 text-grey" style="">
+								<input type="checkbox" onclick="getcolor();"  class="bgc-grey" name="color"  value="Grey" />
+								Grey
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Clothing size</label>
+					<div class="col-sm-8" style="padding-top: 10px;">
+						<div class="row" >
+							<input type="hidden" name="sizes" id="sizes" value="">
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="S" />
+								S
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="M" />
+								M
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="L" />
+								L
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="XL" />
+								XL
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="XXL" />
+								XXL
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="XXXL" />
+								XXXL
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Shoes size</label>
+					<div class="col-sm-8" style="padding-top: 10px;">
+						<div class="row" >
+
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="35" />
+								35
+							</label>
+
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="36" />
+								36
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="37" />
+								37
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="38" />
+								38
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="39" />
+								39
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="40" />
+								40
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="41" />
+								41
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="42" />
+								42
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="43" />
+								43
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="44" />
+								44
+							</label>
+							<label class="col-md-2" style="">
+								<input type="checkbox" onclick="getcolor();" class=" " name="size" value="45" />
+								45
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label text-sm-right pr-0">Product variant</label>
+					<div class="col-sm-8" style="padding-top: 10px;">
+						<div class="" id="variant" >
+
+						</div>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -94,3 +242,60 @@
   <hr class="border-double my-4 brc-secondary-l2" />
 
 </div>
+<script>
+
+	function getcolor(sel)
+	{
+
+		var colors = [];
+		$('input[name=color]:checked').map(function() {
+			colors.push($(this).val());
+		});
+		var size = [];
+		$('input[name=size]:checked').map(function() {
+			size.push($(this).val());
+		});
+
+		$('#colors').val(colors);
+		$('#sizes').val(size);
+		var price = $('#price').val();
+		//console.log(size);
+		$.ajax({
+			type: "POST",
+			url: "/admin/product/get_product_variant.jsp?colors=" + colors + "&size=" + size + "&price=" + price + "",
+			data: "",
+			contentType: "html",
+			async: false,
+			success: function (data) {
+				//console.log(contact.id);
+
+				//console.log(data);
+				$("#variant").html(data);
+
+			}
+		});
+	}
+</script>
+<script>
+
+
+	function getval(sel)
+	{
+		var cat = sel.value;
+		console.log(cat);
+		$.ajax({
+			type: "POST",
+			url: "/admin/product/get_sub_category.jsp?cat=" + cat + "",
+			data: "",
+			contentType: "html",
+			async: false,
+			success: function (data) {
+				//console.log(contact.id);
+
+				console.log(data);
+				$("#sub_category_id").html(data);
+
+			}
+		});
+	}
+</script>

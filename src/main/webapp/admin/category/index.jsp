@@ -108,7 +108,7 @@
         p.setVar("sublist", subCat);
         p.setVar("info", info);
         p.setVar("parent", catInfo);
-
+        p.setVar("userId", userId);
         p.setVar("form_script", f.getScript());
         p.setVar("pagetitle", pagetitle);
         p.setVar("pageaction", pageaction);

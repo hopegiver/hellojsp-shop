@@ -247,6 +247,10 @@ a.text-primary-l5:hover, a.text-primary-l5:focus {
   color: #b8d2ef !important;
 }
 
+.text-red {
+  color: #FD0202 !important;
+}
+
 .text-blue {
   color: #478fcc !important;
 }
@@ -4065,6 +4069,23 @@ a:hover {
 
 .brc-green {
   border-color: #62cb9f !important;
+}
+
+.bgc-orange {
+  background-color: #FF9402 !important;
+}
+
+
+.bgc-cyan {
+  background-color: #02FFFF !important;
+}
+
+.text-cyan-d2 {
+  color: #02FFFF !important;
+}
+
+.bgc-light-pink {
+  background-color: #FF6FFD !important;
 }
 
 .bgc-green-tp1 {

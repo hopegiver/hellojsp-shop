@@ -1,0 +1,182 @@
+<main>
+
+    <section class="breadcrumb-area bg-light p-t-80 p-b-120 fs-14 link-color-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="m-b-30 fs-40 fw-600"> ${info.category_name}</h2>
+                    <ul class="list-inline">
+                        <li><a href="/">Home</a></li>
+                        <li>-</li>
+                        <li><a href="#!">Category</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shop-category-wrapper p-t-120 p-b-120">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3">
+
+                    <div class="shop-category-sidebar">
+                        <div class="widgets woo-widget woo-cat m-b-30">
+                            <h4 class="widgets-title">Choose category</h4>
+                            <div class="jqtree" id="id-jqtree-categories2"></div>
+                            <input type="hidden" id="cat_id" value="${id}">
+                        </div>
+
+                        <div class="widgets woo-widget woo-color-filter m-b-30">
+                            <h4 class="widgets-title">Color filter</h4>
+                            <form >
+                                <p class="white">
+                                    <label>White
+                                        <input type="radio" name="radio" value="White">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                                <p class="black">
+                                    <label>Black
+                                        <input type="radio" name="radio" value="Black">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                                <p class="red">
+                                    <label>Red
+                                        <input type="radio" name="radio" value="Radical Red">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                                <p class="orange">
+                                    <label>Orange
+                                        <input type="radio" name="radio" value="Orange" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                                <p class="blue">
+                                    <label>Blue
+                                        <input type="radio" name="radio" value="Blue">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                                <p class="green">
+                                    <label>Green
+                                        <input type="radio" name="radio" value="Green">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                                <p class="spacegrey">
+                                    <label>Grey
+                                        <input type="radio" name="radio" value="Spacegrey">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </p>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="category-before-loop clearfix m-b-30">
+                        <div class="cat-before-left float-l">
+                            <div class="pro-search position-relative">
+                                <form >
+                                    <input type="text" placeholder="Search">
+                                    <button type="submit"><i class="ti ti-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="cat-before-right float-r">
+
+                        </div>
+                    </div>
+                    <div class="category-shop-loop">
+                        <div class="row">
+                            #foreach($item in $product_list)
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="single-product m-b-60 text-center">
+                                    <div class="product-action position-relative">
+                                        <span class="onsale out-of-stock">New</span>
+                                        <div class="product-img">
+                                            <img src="/data/files/${item.photo_url}" style="max-height: 240px; min-height: 239px; " alt="Product">
+                                        </div>
+                                        <div class="action-list ab-b-l w-full trans-06">
+                                            <ul>
+                                                <li><a href="/product/detail.jsp?id=${item.id}"><i class="ti ti-search"></i></a></li>
+                                                <li><a href="" class="add-to-cart" data-name="Woman Pink Purse Isolated"><i class="ti ti-bag"></i></a></li>
+                                                <li><a href="#" class="add-wishlist" data-name="Woman Pink Purse Isolated"><i class="ti ti-heart" ></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-content m-t-30">
+                                        <ul class="pro-rating">
+                                            <li class="rating-given"><i class="fa fa-star"></i></li>
+                                            <li class="rating-given"><i class="fa fa-star"></i></li>
+                                            <li class="rating-given"><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                        <h6 style="height: 30px; overflow:hidden;"><a href="/product/detail.jsp?id=${item.id}">${item.product_name}</a></h6>
+                                        <p class="price">$${item.price}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            #end
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="subscribe-section p-t-120 p-b-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-title text-center m-b-60">
+                        <h2 class="fs-40 lh-16 m-b-30">  Subscribe & Get upto 20% off</h2>
+                        <p>Fish fruitful were together don't bring replenish dominion so evening.</p>
+                    </div>
+                    <div class="subs-form text-center">
+                        <form >
+                            <input type="text" placeholder="enter your email">
+                            <button type="submit" class="btn boxed-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribetion end -->
+</main>
+
+<script>
+    var categoryData = [
+        #foreach($cat in $category_list)
+        {
+            id: ${cat.id},
+            name: "${cat.category_name}",
+            url: "category",
+
+            children: [
+                #foreach($subitem in $sub_category_list)
+                #if($subitem.parent_id == $cat.id)
+                {
+                    id: ${subitem.id},
+                    name: "${subitem.category_name}",
+                    url: "category",
+                    is_selected: true,
+                },
+                #end
+                #end
+            ]
+        },
+        #end
+
+    ];
+</script>

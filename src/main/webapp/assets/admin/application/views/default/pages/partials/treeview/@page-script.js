@@ -9,23 +9,30 @@ jQuery(function($) {
     </span>';
     
     var deselectedIcon =
-    '';
+        '';
+    // '<span class="deselected-icon d-inline-block text-center border-1 bgc-white brc-secondary-m3 px-1px mx-1 text-70 pb-1px radius-2px">\
+    //     <i class="w-2 fa fa-times text-orange-l4"></i>\
+    // </span>';
 
     
     var categoryTree = $('#id-jqtree-categories');
     categoryTree.tree({
         data: categoryData,
-        autoOpen: false,
+        autoOpen: 1,
         useContextMenu: false,
  
         closedIcon : $('<i class="bgc-white w-2 far fa-plus-square text-grey-l1 text-110"></i>'),
         openedIcon : $('<i class="bgc-white w-2 far fa-minus-square text-default-d2 text-110"></i>'),
 
         onCreateLi: function(node, $li, is_selected) {
+            var menu_id = $("#menu_id").val();
+            console.log(menu_id);
             // insert the icon
-            var title = $li.find('.jqtree-title');
+            var title = $li.find('.jqtree-element');
             if(node.children.length == 0) {
-                title.addClass('text-grey-d2 text-95');
+                if(node.id == menu_id) {
+                    title.addClass('text-grey-d2 text-95 selected_cat2');
+                }
                 if( is_selected ) {
                     $(selectedIcon).insertBefore(title);
                 }
@@ -34,6 +41,9 @@ jQuery(function($) {
                 }
             }
             else {
+                if(node.id == menu_id) {
+                    title.addClass('text-grey-d2 text-95 selected_cat2');
+                }
                 title.addClass('text-secondary-d3 font-italic');
             }
             $li.find('.jqtree-element').addClass('bgc-h-warning-l3 radius-1');
@@ -73,7 +83,71 @@ jQuery(function($) {
 
     ///////////
 
+    var categoryTree2 = $('#id-jqtree-categories2');
+    categoryTree2.tree({
+        data: categoryData,
+        autoOpen: 1,
+        useContextMenu: true,
 
+        closedIcon : $('<i class="bgc-white w-2 far fa-plus-square text-grey-l1 text-110"></i>'),
+        openedIcon : $('<i class="bgc-white w-2 far fa-minus-square text-default-d2 text-110"></i>'),
+
+        onCreateLi: function(node, $li, is_selected) {
+            var cat_id = $('#cat_id').val();
+            console.log(node);
+            // insert the icon
+            var title = $li.find('.jqtree-element');
+            if(node.children.length == 0) {
+                if(node.id == cat_id) {
+                    title.addClass('text-grey-d2 text-95 selected_cat');
+                }
+                if( is_selected ) {
+                    $(selectedIcon).insertBefore(title)
+                }
+                else {
+                    $(deselectedIcon).insertBefore(title);
+                }
+            }
+            else {
+                if(node.id == cat_id) {
+                    title.addClass('text-grey-d2 text-95 selected_cat');
+                }
+                title.addClass('text-secondary-d3 font-italic');
+            }
+            $li.find('.jqtree-element').addClass('bgc-h-warning-l3 radius-1');
+        }
+    });
+
+    categoryTree2.on( 'tree.click', function(e) {
+        // Disable single selection
+        e.preventDefault();
+
+        var selectedNode = e.node;
+        //alert(selectedNode.id);
+        window.location.href = "/"+selectedNode.url+".jsp?id="+selectedNode.id+"";
+        //location.href = '/admin/menu/index.jsp';
+        if (selectedNode.id === undefined || selectedNode.children.length > 0) {
+            return;
+        }
+
+        if( categoryTree2.tree('isNodeSelected', selectedNode) ) {
+            //if already selected, deselect it
+            categoryTree2.tree('removeFromSelection', selectedNode);
+
+            //insert deselectedIcon and remove .selected-icon
+            var icon = $(selectedNode.element).find('.selected-icon');
+            $(deselectedIcon).insertAfter(icon);
+            icon.remove();
+        }
+        else {
+            categoryTree2.tree('addToSelection', selectedNode);
+
+            //insert selectedIcon and remove .deselected-icon
+            var icon = $(selectedNode.element).find('.deselected-icon');
+            $(selectedIcon).insertAfter(icon);
+            icon.remove();
+        }
+    });
 
     //Browse Files Tree
     var fileTree = $('#id-jqtree-files');

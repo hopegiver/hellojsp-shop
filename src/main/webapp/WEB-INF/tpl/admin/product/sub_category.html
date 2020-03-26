@@ -1,0 +1,5 @@
+
+<option value="">Select</option>
+#foreach($list in $sub_category)
+<option value='${list.id}' #if($sub_cat_id == $list.id) selected #end >${list.category_name}</option>
+#end

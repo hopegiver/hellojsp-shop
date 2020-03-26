@@ -1,0 +1,52 @@
+
+<table class="table table-bordered table-bordered-x table-hover text-dark-m2">
+    <thead class="text-dark-m3 bgc-grey-l4">
+        <tr class="bgc-grey-l3 text-black">
+            <td width="40">
+                <input type="checkbox" onclick="check_all();"  class="bgc-grey" name="ccheck"  value="1"  />
+            </td>
+            <td>
+                Color
+            </td>
+            <td>
+                Size
+            </td>
+            <td>
+                Price
+            </td>
+        </tr>
+    </thead>
+
+    <tbody>
+    <script type="text/javascript">
+
+    </script>
+    #set( $foo = 0 )
+    #foreach($color in $colors)
+
+        #foreach($size in $sizes)
+            #set( $foo = $foo + 1 )
+            <tr class="bgc-h-default-l3 d-style">
+                <td>
+
+                    <input type="checkbox"  class="bgc-grey" name="variant${foo}"  value="1" #foreach($var in $variants) #if($var.color == ${color} && $var.size == ${size}) checked #end #end />
+                </td>
+                <td>
+                    <input type="text" id="product_color${foo}" name="product_color${foo}" class="form-control form-control-sm" readonly value="${color}">
+                </td>
+                <td >
+                    <input type="text" id="product_size${foo}" name="product_size${foo}" class="form-control form-control-sm" readonly value="#if($size != '')$size#end">
+                </td>
+                <td >
+                    <input type="text" name="product_price${foo}" class="form-control form-control-sm" value="${price}">
+
+
+                </td>
+            </tr>
+        #end
+    #end
+    </tbody>
+
+</table>
+
+<input type="hidden" name="variant_count"  value="${foo}" >

@@ -114,6 +114,7 @@
         //    p.setDebug(out);
         p.setLayout("adminMain");
         p.setBody("admin/menu/index");
+        p.setVar("userId", userId);
         p.setVar("id", id);
         p.setVar("list", menuInfo);
         p.setVar("sublist", subMenu);

@@ -50,6 +50,7 @@
                 </div>
 
                 <div class="form-group">
+                    <input type="hidden" name="menu_id" id="menu_id" value="${id}">
                     <label class="control-label col-sm-2">Menu Name</label>
                     <div class="col-sm-4"><input type="text" name="menu_name" class="form-control" required></div>
                 </div>
@@ -127,6 +128,7 @@
 
     $(document).ready(function() {
         var module_id = $("#module_id_hide").val();
+
         //alert(module_id);
         console.log(module_id);
         var module = $("#current_id").val();
