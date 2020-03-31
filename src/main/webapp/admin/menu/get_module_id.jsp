@@ -13,7 +13,7 @@ int module_id = m.reqInt("module_id");
             p.setBody("admin/menu/child_module");
             p.setVar("type", "content");
             p.setVar("module_id", module_id);
-            p.setVar("content_list", content_one);
+            p.setLoop("content_list", content_one);
             p.print();
         }
 
@@ -24,7 +24,7 @@ int module_id = m.reqInt("module_id");
             p.setBody("admin/menu/child_module");
             p.setVar("type", "category");
             p.setVar("module_id", module_id);
-            p.setVar("content_list", content_one);
+            p.setLoop("content_list", content_one);
             p.print();
         }
 
@@ -35,7 +35,7 @@ int module_id = m.reqInt("module_id");
             p.setBody("admin/menu/child_module");
             p.setVar("type", "blog");
             p.setVar("module_id", module_id);
-            p.setVar("content_list", content_one);
+            p.setLoop("content_list", content_one);
             p.print();
         }
         //p.print(Writer module);

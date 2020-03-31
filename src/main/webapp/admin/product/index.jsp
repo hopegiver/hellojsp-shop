@@ -38,9 +38,9 @@
         p.setLayout("adminMain");
         p.setBody("admin/product/index");
         
-        p.setVar("list", list);
-        p.setVar("cat_info", cat_info);
-        p.setVar("sub_cat_info", sub_cat_info);
+        p.setLoop("list", list);
+        p.setLoop("cat_info", cat_info);
+        p.setLoop("sub_cat_info", sub_cat_info);
         p.setVar("total_cnt", lm.getTotalNum());
         p.setVar("pagebar", lm.getPaging());
         p.setVar("form_script", f.getScript());

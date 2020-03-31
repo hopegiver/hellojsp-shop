@@ -17,27 +17,11 @@
 				<input type="hidden" name="" id="pro_id" value="${info.id}">
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Category</label>
 				<div class="col-sm-3">
-
-					<select name="category_id" class="form-control">
-						<option value="">Select</option>
-						<!--#foreach($item in $list)-->
-						<option value="${item.id}">${item.category_name}</option>
-						<!--#end-->
-					</select>
+					$m.includePage("/admin/product/categories.jsp")
 
 				</div>
 
-				<label class="col-sm-2 col-form-label text-sm-right pr-0">Sub category</label>
-				<div class="col-sm-3 ">
 
-					<select name="sub_category_id" class="form-control">
-						<option value="">Select</option>
-						#foreach($sub in $sublist)
-						<option value="${sub.id}">${sub.parent_name} > ${sub.category_name} </option>
-						#end
-					</select>
-
-				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product name</label>
@@ -246,6 +230,8 @@
 
 
 </div>
+
+
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -282,6 +268,7 @@
 
 	});
 </script>
+
 
 <script>
 

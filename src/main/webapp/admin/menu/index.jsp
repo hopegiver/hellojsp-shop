@@ -116,10 +116,10 @@
         p.setBody("admin/menu/index");
         p.setVar("userId", userId);
         p.setVar("id", id);
-        p.setVar("list", menuInfo);
-        p.setVar("sublist", subMenu);
+        p.setLoop("list", menuInfo);
+        p.setLoop("sublist", subMenu);
         p.setVar("info", info);
-        p.setVar("parent", parent);
+        p.setLoop("parent", parent);
 
         p.setVar("form_script", f.getScript());
         p.setVar("pagetitle", pagetitle);

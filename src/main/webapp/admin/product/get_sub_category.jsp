@@ -14,7 +14,7 @@
         p.setVar("type", "category");
         p.setVar("cat", cat);
         p.setVar("sub_cat_id", sub_cat_id);
-        p.setVar("sub_category", sub_category);
+        p.setLoop("sub_category", sub_category);
         p.print();
     }
 

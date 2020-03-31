@@ -3,7 +3,7 @@
     <thead class="text-dark-m3 bgc-grey-l4">
         <tr class="bgc-grey-l3 text-black">
             <td width="40">
-                <input type="checkbox" onclick="check_all();"  class="bgc-grey" name="ccheck"  value="1"  />
+                <input type="checkbox" id="checkAll" class="bgc-grey" name="ccheck"  value="1"  />
             </td>
             <td>
                 Color
@@ -29,7 +29,7 @@
             <tr class="bgc-h-default-l3 d-style">
                 <td>
 
-                    <input type="checkbox"  class="bgc-grey" name="variant${foo}"  value="1" #foreach($var in $variants) #if($var.color == ${color} && $var.size == ${size}) checked #end #end />
+                    <input type="checkbox"  class="bgc-grey variants" name="variant${foo}"  value="1" #foreach($var in $variants) #if($var.color == ${color} && $var.size == ${size}) checked #end #end />
                 </td>
                 <td>
                     <input type="text" id="product_color${foo}" name="product_color${foo}" class="form-control form-control-sm" readonly value="${color}">
@@ -50,3 +50,18 @@
 </table>
 
 <input type="hidden" name="variant_count"  value="${foo}" >
+
+
+<script>
+
+
+    $("#checkAll").click(function () {
+        $('.variants').not(this).prop('checked', this.checked);
+    });
+    $(".variants").click(function () {
+        if ($('#checkAll').prop('checked')) {
+            $('#checkAll').not(this).prop('checked', this.checked = false);
+        }
+
+    });
+</script>

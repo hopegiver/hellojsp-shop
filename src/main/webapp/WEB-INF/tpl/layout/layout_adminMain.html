@@ -10,7 +10,7 @@
  
   
     <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/bootstrap/dist/css/bootstrap.css">
-    
+
     <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/regular.css">
     <link rel="stylesheet" type="text/css" href="/assets/admin/node_modules/@fortawesome/fontawesome-free/css/brands.css">
@@ -23,21 +23,27 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/assets/admin/dist/css/ace.css">
-    <link rel="stylesheet" type="text/css" href="/assets/admin/application/views/default/pages/partials/elements/@page-style.css">  </head>
-     
+    <link rel="stylesheet" type="text/css" href="/assets/admin/application/views/default/pages/partials/elements/@page-style.css">
+    <script type="text/javascript" src="/js/underscore.js"></script>
+
+    <script type="text/javascript" src="/js/hello.js"></script>
+
   </head>
 <body class="sidebar-dark">
 	<div class="body-container">
-     #parse( "layout/admin/top_bar.html" )
+
+        $m.includePage("/admin/top_bar.jsp")
       <div class="main-container">
-        #parse( "layout/admin/menu.html" )
+          $m.includePage("/admin/menu.jsp")
          <div role="main" class="main-content">
-         
+
           #parse($BODY)
 
           #parse( "layout/admin/footer.html" )
         </div><!-- /main -->
       </div><!-- /.main-container -->
+
+
 <script>
 
 

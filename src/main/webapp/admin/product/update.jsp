@@ -5,7 +5,7 @@ if(userId != null){
 	ProductDao product = new ProductDao();
 	CategoryDao category = new CategoryDao();
 	ProductvariantDao productvariant = new ProductvariantDao();
-	
+	CategoryModuleDao catModule = new CategoryModuleDao();
 	//Step2
 	int id = m.reqInt("id");
 	if(id == 0) { m.jsError("Primary Key is required"); return; }
@@ -13,12 +13,11 @@ if(userId != null){
 	//Step3
 	DataSet info = product.find("id = " + id);
 	
-	
 	if(!info.next()) { m.jsError("No Data"); return; }
 	
 	//Step4
-	f.addElement("category_id", info.s("category_id"), "title:'category_id'");
-	f.addElement("sub_category_id", info.s("sub_category_id"), "title:'sub_category_id'");
+	f.addElement("cats", info.s("categories"), "title:'cats'");
+	f.addElement("cat_ids", info.s("category_id"), "title:'cat_ids'");
 	f.addElement("product_name", info.s("product_name"), "title:'product_name', required:true");
 	f.addElement("price", info.s("price"), "title:'price', required:true");
 	f.addElement("summary", info.s("summary"), "title:'summary', required:true");
@@ -31,8 +30,8 @@ if(userId != null){
 	//Step5
 	if(m.isPost() && f.validate()) {
 	
-		product.item("category_id", f.get("category_id"));
-		product.item("sub_category_id", f.get("sub_category_id"));
+		product.item("category_id", f.get("cat_ids"));
+		product.item("categories", f.get("cats"));
 		product.item("product_name", f.get("product_name"));
 		product.item("price", f.get("price"));
 		product.item("summary", f.get("summary"));
@@ -49,6 +48,15 @@ if(userId != null){
 			m.jsAlert("Error occurred(update)");
 			return;
 		}
+		catModule.delete("module_id = " + id);
+		String[] cat_ids = f.get("cat_ids").split(",");
+		for (String cid : cat_ids)
+		{
+			catModule.item("category_id", cid);
+			catModule.item("module_id", id);
+			int catmid = catModule.insertWithId();
+		}
+
 		productvariant.delete("product_id = " + id);
 		int variantCount =  f.getInt("variant_count");
 		for(int i = 1; i <= variantCount; i+=1){
@@ -66,26 +74,6 @@ if(userId != null){
 		m.redirect("index.jsp");
 		return;
 	}
-	
-	ListManager lm = new ListManager();
-	//lm.setDebug(out);
-	lm.setRequest(request);
-	lm.setTable("tb_category a");
-	lm.setFields("a.*");
-	lm.addWhere("a.status != -1");
-	lm.addWhere("a.parent_id = 0");
-	lm.setOrderBy("a.id ASC");
-	
-	DataSet list = lm.getDataSet();
-	
-	DataSet sublist = category.query(
-			"select a.*, b.category_name as parent_name"
-			+" from tb_category a"
-			+ " left join tb_category b on a.parent_id = b.id "
-			+ " where a.parent_id != "+ 0
-			);
-	
-	//Step6
 
 
 	String pagetitle = "Product"; 
@@ -98,8 +86,7 @@ if(userId != null){
 	p.setVar("sizes", size_split);
 	p.setLayout("adminMain");
 	p.setBody("admin/product/update");
-	p.setVar("list", list);
-	p.setVar("sublist", sublist);
+
 	p.setVar("info", info);
 	
 	p.setVar("form_script", f.getScript());

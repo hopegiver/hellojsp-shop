@@ -12,6 +12,10 @@ p.setVar("m", m);
 Message msg = new Message();
 p.setVar("msg", msg);
 
+Json j = new Json();
+j.setWriter(out);
+
+
 String userId = null;
 
 Auth auth = new Auth(request, response);

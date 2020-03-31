@@ -1,0 +1,119 @@
+
+<div class="page-content ">
+    <div class="page-header">
+        <h1 class="page-title text-primary-d2">
+            ${pagetitle}
+            <small class="page-info text-secondary-d2">
+                <i class="fa fa-angle-double-right text-80"></i>
+                ${pageaction}
+            </small>
+        </h1>
+    </div>
+
+    <div class="row" style="margin-bottom: 30px;">
+        <div class="col-4">
+            <div class="card border-0">
+                <div class="card-header bgc-default-d2">
+                    <h3 class="card-title text-130 text-white" >
+                        Choose menu
+                    </h3>
+                    <!--                    <a href="create.jsp" class="btn btn-sm btn-success">Add main menu</a>-->
+                </div>
+                <div class="card-body bgc-white border-1 border-t-0 brc-default-m2">
+                    <div class="jqtree" id="id-jqtree-categories"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8" style="" id="form">
+
+        </div>
+    </div>
+
+</div>
+<script>
+    var app1 = {
+        templateUrl:'/spa/tpl/menu/form.html',
+        dataUrl: '/spa/api/menu/index.jsp'
+
+    }
+    $('#form').template(app1);
+
+</script>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var module_id = $("#module_id_hide").val();
+
+        //alert(module_id);
+        console.log(module_id);
+        var module = $("#current_id").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/menu/get_module_id.jsp?module=" + module + "&module_id=" + module_id + "",
+            data: "",
+            contentType: "html",
+            async: false,
+            success: function (data) {
+                //console.log(contact.id);
+
+                console.log(data);
+                $("#module_id").html(data);
+
+            }
+        });
+
+    });
+</script>
+<script>
+    var categoryData = [
+        #foreach($item in $list)
+        {
+            id: ${item.id},
+            name: "${item.menu_name}",
+            url: "menu",
+            children: [
+                #foreach($subitem in $sublist)
+                #if($subitem.parent_id == $item.id)
+                {
+                    id: ${subitem.id},
+                    name: "${subitem.menu_name}",
+                    url: "menu",
+                },
+                #end
+                #end
+            ]
+        },
+        #end
+
+    ];
+</script>
+
+<script>
+
+
+    function getval(sel)
+    {
+        var module = sel.value;
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/menu/get_module_id.jsp?module=" + module + "",
+            data: "",
+            contentType: "html",
+            async: false,
+            success: function (data) {
+                //console.log(contact.id);
+
+                console.log(data);
+                $("#module_id").html(data);
+
+            }
+        });
+    }
+</script>
+

@@ -104,10 +104,10 @@
         p.setLayout("adminMain");
         p.setBody("admin/category/index");
         p.setVar("id", id);
-        p.setVar("list", catInfo);
-        p.setVar("sublist", subCat);
+        p.setLoop("list", catInfo);
+        p.setLoop("sublist", subCat);
         p.setVar("info", info);
-        p.setVar("parent", catInfo);
+        p.setLoop("parent", catInfo);
         p.setVar("userId", userId);
         p.setVar("form_script", f.getScript());
         p.setVar("pagetitle", pagetitle);

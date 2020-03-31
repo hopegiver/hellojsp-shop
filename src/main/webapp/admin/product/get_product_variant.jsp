@@ -21,7 +21,7 @@
         p.setVar("colors", color_split);
         p.setVar("sizes", size_split);
         p.setVar("price", price);
-        p.setVar("variants", variants);
+        p.setLoop("variants", variants);
         p.print();
 
 

@@ -1,0 +1,89 @@
+<form  class="forms-sample" name="form1" method="post" enctype="multipart/form-data">
+
+
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">Parent Menu</label>
+        <div class="col-sm-4">
+            <select name="parent_id" class="form-control" required>
+                <option value="0">Select</option>
+
+                <% _.each(list, function(item) { %>
+
+                <option value="{{item.id}}">{{item.menu_name}}</option>
+
+                <% }) %>
+            </select>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="hidden" name="menu_id" id="menu_id" value="${id}">
+        <label class="control-label col-sm-2">Menu Name</label>
+        <div class="col-sm-4"><input type="text" name="menu_name" class="form-control" required></div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Module</label>
+        <div class="col-sm-4">
+            <input type="hidden" name="current_id" id="current_id" value="">
+            <select id="module" onchange="getval(this);"  name="module" class="form-control" required>
+                <option value="">Select</option>
+                <option value="1">Content</option>
+                <option value="2">Product category</option>
+
+                <option value="3">Blog</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group" id="mod_content" >
+        <label class="control-label col-sm-2">Module ID</label>
+        <div class="col-sm-4">
+            <input type="hidden" name="module_id_hide" id="module_id_hide" value="">
+            <select id="module_id" name="module_id" class="form-control">
+
+            </select>
+        </div>
+    </div><div id="app4"></div>
+    <div class="form-group" id="mod_content" >
+        <label class="control-label col-sm-2">App</label>
+        <div class="col-sm-4">
+            <div id="app1"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Save" class="btn btn-primary">
+            <input type="button" value="Cancel" class="btn btn-default" onclick="history.go(-1)">
+            #if($id != 0)
+            <button type="button" class="btn btn-danger my-1" data-toggle="modal" data-target="#exampleModal">
+                Delete
+            </button>
+            #end
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Menu delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want to delete Menu?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <a href="/admin/menu/index.jsp?id=${id}&del=1" class="btn btn-primary">Yes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+${form_script}
