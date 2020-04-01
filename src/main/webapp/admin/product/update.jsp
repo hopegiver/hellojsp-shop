@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %><%@ include file="/init.jsp" %><%
+<%@ page contentType="text/html; charset=utf-8" %><%@ include file="../init.jsp" %><%
 
 if(userId != null){
 	//Step1
@@ -6,13 +6,14 @@ if(userId != null){
 	CategoryDao category = new CategoryDao();
 	ProductvariantDao productvariant = new ProductvariantDao();
 	CategoryModuleDao catModule = new CategoryModuleDao();
+	FileDao productfiles = new FileDao();
 	//Step2
 	int id = m.reqInt("id");
 	if(id == 0) { m.jsError("Primary Key is required"); return; }
 	
 	//Step3
 	DataSet info = product.find("id = " + id);
-	
+
 	if(!info.next()) { m.jsError("No Data"); return; }
 	
 	//Step4
@@ -26,7 +27,9 @@ if(userId != null){
 
 	String[] color_split = info.s("colors").split(",");
 	String[] size_split = info.s("sizes").split(",");
-	 //Boolean utga =  m.inArray("Black", color_split);
+
+	String unique_id = info.s("unique_id");
+
 	//Step5
 	if(m.isPost() && f.validate()) {
 	
@@ -38,11 +41,7 @@ if(userId != null){
 		product.item("description", f.get("description"));
 		product.item("colors", f.get("colors"));
 		product.item("sizes", f.get("sizes"));
-		File attFile = f.saveFile("photo_url");
-		if(attFile != null) {
-			product.item("photo_url", attFile.getName());
-		}
-		
+
 		//blog.setDebug(out);
 		if(!product.update("id = " + id)) {
 			m.jsAlert("Error occurred(update)");
@@ -75,7 +74,7 @@ if(userId != null){
 		return;
 	}
 
-
+	DataSet images = productfiles.find("module = '"+unique_id+"'");
 	String pagetitle = "Product"; 
 	String pageaction = "update"; 
 	p.setVar("pagetitle", pagetitle);
@@ -84,11 +83,12 @@ if(userId != null){
 
 	p.setVar("colors", color_split);
 	p.setVar("sizes", size_split);
+	p.setVar("info", info);
+	p.setLoop("imagess", images);
 	p.setLayout("adminMain");
 	p.setBody("admin/product/update");
 
-	p.setVar("info", info);
-	
+
 	p.setVar("form_script", f.getScript());
 	p.print();
 

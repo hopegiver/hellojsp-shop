@@ -5,6 +5,7 @@ ProductDao product = new ProductDao();
 CategoryDao category = new CategoryDao();
 ProductvariantDao productvariant = new ProductvariantDao();
 CategoryModuleDao catModule = new CategoryModuleDao();
+	FileDao file = new FileDao();
 //Step2
 
 f.addElement("cats", null, "title:'cats', required:true");
@@ -13,10 +14,11 @@ f.addElement("price", null, "title:'price', required:true");
 f.addElement("summary", null, "title:'summary', required:true");
 f.addElement("description", null, "title:'description', required:true");
 f.addElement("photo_url", null, "title:'photo_url'");
+	f.addElement("file", null, "title:'file'");
 //Step3
 if(m.isPost() && f.validate()) {
 
-
+	product.item("unique_id", f.get("module"));
 	product.item("category_id", f.get("cat_ids"));
 	product.item("categories", f.get("cats"));
 	product.item("product_name", f.get("product_name"));
@@ -25,10 +27,7 @@ if(m.isPost() && f.validate()) {
 	product.item("description", f.get("description"));
 	product.item("colors", f.get("colors"));
 	product.item("sizes", f.get("sizes"));
-	File attFile = f.saveFile("photo_url");
-	if(attFile != null) {
-		product.item("photo_url", attFile.getName());
-	}
+
 
 	product.item("reg_date", m.time("yyyyMMddHHmmss"));
 	product.item("status", 1);
@@ -62,16 +61,18 @@ if(m.isPost() && f.validate()) {
 
 	}
 
+
 	m.redirect("index.jsp");
 	return;
 }
 
-
+	String unique_id = Hello.sha1(m.time("yyyyMMddHHmmss"));
 String pagetitle = "Product";
 String pageaction = "add";
 p.setVar("pagetitle", pagetitle);
 p.setVar("pageaction", pageaction);
 p.setVar("userId", userId);
+p.setVar("unique_id", unique_id);
 p.setLayout("adminMain");
 p.setBody("admin/product/create");
 

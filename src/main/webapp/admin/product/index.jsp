@@ -5,7 +5,7 @@
         
         ProductDao product = new ProductDao();
         CategoryDao category = new CategoryDao();
-
+        FileDao productfiles = new FileDao();
         //Step2
         f.addElement("s_keyword", null, null);
 
@@ -22,6 +22,9 @@
         //Step3
         DataSet list = lm.getDataSet();
         while(list.next()) {
+            DataSet images = productfiles.find("module = '"+list.s("unique_id")+"'", "*", 1);
+
+            list.put("firstimage", images);
             list.put("reg_date", m.time("yyyy-MM-dd", list.s("reg_date")));
 
         }

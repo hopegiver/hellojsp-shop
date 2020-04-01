@@ -28,7 +28,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product name</label>
 				<div class="col-sm-8">
-
+					<input type="hidden" id="moduleId" name="module" value="${unique_id}">
 				<input type="text" name="product_name" class="form-control">
 
 				</div>
@@ -55,14 +55,33 @@
 					<textarea id="summernote" name="description" class="form-control" rows="5"></textarea>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label text-sm-right pr-0">Photo File</label>
-				<div class="col-sm-8">
 
-					<input type="file" name="photo_url" class="form-control">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label text-sm-right pr-0"> Photos</label>
+				<div class="col-sm-8" style="padding-top: 10px;">
+
+					<div action="/admin/product/upload.jsp" id="frmTarget" class="dropzone">
+						<input type="hidden" id="moduleId" name="module" value="${unique_id}">
+
+						<div class="fallback d-none">
+
+							<input name="file" type="file" multiple  />
+						</div>
+
+						<div class="dz-default dz-message">
+						<span class="text-150  text-grey-d2">
+							<span class="text-130 font-bolder"><i class="fa fa-caret-right text-danger-m1"></i> Drop files</span>
+							to upload
+							<span class="text-90 text-muted">(or click)</span>
+							<br />
+							<i class="upload-icon fas fa-cloud-upload-alt text-blue-m2 fa-3x mt-4"></i>
+						</span>
+						</div>
+					</div>
+
+					<input type="button" id='uploadfiles' value='Upload Files' >
 				</div>
 			</div>
-
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label text-sm-right pr-0">Product color</label>
 				<div class="col-sm-8" style="padding-top: 10px;">
@@ -212,6 +231,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="form-group row">
 				<div class=" col-sm-10" style="text-align: right;">
 					<input type="submit" value="Save" class="btn btn-primary">
@@ -219,16 +239,25 @@
 				</div>
 			</div>
 		</form>
+
 		${form_script}
   	</div>
   </div>
+	<div class="row">
+		<div class="col-12">
 
+
+
+
+		</div>
+	</div>
 
   <hr class="border-double my-4 brc-secondary-l2" />
 
 </div>
 
 <script>
+
 
 	function getcolor(sel)
 	{

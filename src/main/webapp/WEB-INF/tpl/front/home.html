@@ -41,7 +41,9 @@
                     <div class="single-product m-b-60 text-center">
                         <div class="product-action position-relative">
                             <div class="product-img">
-                                <img src="/data/files/${item.photo_url}" style="max-height: 250px; min-height: 249px; " alt="Product">
+                                #foreach($img in $item.firstimage)
+                                <img src="/data/files/${img.file_name}" style="height: 250px;" alt="Product">
+                                #end
                             </div>
                             <div class="action-list ab-b-l w-full trans-06">
                                 <ul>

@@ -5,13 +5,15 @@ jQuery(function($) {
 
     $('#dropzone').addClass('dropzone');
     var myDropzone = new Dropzone('#dropzone', {
+
       previewTemplate: $('#preview-template').html(),
-      // autoProcessQueue: false,
+      //autoProcessQueue: false,
+      paramName: "files",
       addRemoveLinks: false,
       
       thumbnailHeight: 120,
       thumbnailWidth: 120,
-      maxFilesize: 0.5,
+      maxFilesize: 2,
       filesizeBase: 1000,
     
       //addRemoveLinks : true,

@@ -21,20 +21,20 @@
             <div class="row">
                 <div class="col-lg-2 col-sm-3 col-3">
                    
-                    <div class="gallery-dots"></div>
+                    <div class="gallery-dots" style="overflow-y: scroll; height: 500px;"></div>
                 </div>
                 <div class="col-lg-6 col-sm-9 col-9">
-                    <div class="product-gallery position-relative">
+                    <div class="product-gallery position-relative"  >
                         
-                        <div class="gallery-arrows"></div>
+                        <div class="gallery-arrows " ></div>
 
                         
-                        <div id="product-gallery-active">
-                        	
-                            <div class="single-gallery-itam"  data-thumb="/data/files/${info.photo_url}">
-                                <img src="/data/files/${info.photo_url}" alt="Product Image">
+                        <div id="product-gallery-active" style=" height: 500px;">
+                            #foreach($img in $images)
+                            <div class="single-gallery-itam"  data-thumb="/data/files/${img.file_name}">
+                                <img src="/data/files/${img.file_name}" alt="Product Image" style="height: 500px;">
                             </div>
-                            
+                            #end
                         </div>
                     </div>
                 </div>
